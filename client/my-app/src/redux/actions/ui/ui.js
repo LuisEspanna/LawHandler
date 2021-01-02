@@ -1,5 +1,7 @@
+import {types} from '../index';
+
 export const setMainLoading = ( status ) => ({
-    type: "[ui] loading",
+    type: types.SET_MAIN_LOADING,
     payload: status
  })
  

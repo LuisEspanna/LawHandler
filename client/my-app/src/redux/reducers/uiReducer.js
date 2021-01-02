@@ -1,3 +1,5 @@
+import {types} from '../actions/';
+
 const initState = {
     main_loading: false,
 }
@@ -5,7 +7,7 @@ const initState = {
 function reducer( state = initState, action ) {
     
     switch ( action.type ) {
-        case "[ui] loading":
+        case types.SET_MAIN_LOADING:
             return {
                 ...state,
                 main_loading: action.payload
