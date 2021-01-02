@@ -1,6 +1,7 @@
 # LawHandler
 
->To install 
+>This project was made using NodeJS and ReactJS
+>all components are based on componets of MaterialUi
 >the main page is [MaterialUi](https://material-ui.com/)
 
 
