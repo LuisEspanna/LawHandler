@@ -22,7 +22,7 @@ export default function Hello(){
             setInitialState(jsonRes);
             dispatch(setMainLoading(false)) ;
         })
-    }, []);
+    }, [dispatch]);
 
     console.log(initialState);
 
