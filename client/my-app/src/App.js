@@ -1,5 +1,7 @@
 import LoginPage from './views/LoginPage/LoginPage';
 import AdminPage from './views/AdminPage/AdminPage.jsx';
+import HomePage from './views/HomePage/HomePage.jsx';
+
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import {
@@ -22,7 +24,7 @@ function App() {
               <AdminPage/>
             </Route>
             <Route path="/">
-              <div>Home</div>
+              <HomePage/>
             </Route>
           </Switch>
           
