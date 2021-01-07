@@ -1,4 +1,5 @@
 import LoginPage from './views/LoginPage/LoginPage';
+import AdminPage from './views/AdminPage/AdminPage.jsx';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import {
@@ -18,7 +19,7 @@ function App() {
               <LoginPage/>
             </Route>
             <Route path="/admin">
-              <div>Admin</div>
+              <AdminPage/>
             </Route>
             <Route path="/">
               <div>Home</div>
