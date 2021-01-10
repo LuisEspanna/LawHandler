@@ -6,12 +6,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import SearchField from './SearchField.jsx';
 import Typography from '@material-ui/core/Typography'; 
 
+import ResultsArea from './ResultsArea.jsx';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
       margin: theme.spacing(3),
       minWidth: 120,
-      paddingTop:'30px'
+      paddingTop:'30px',
     }
 }));
 
@@ -22,6 +24,7 @@ const classes = useStyles();
     <div className={classes.root}>
         <SearchField/>
 
+        <ResultsArea/>
         <Typography paragraph>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
               ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum

@@ -1,0 +1,91 @@
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import CardTitle from '../CardResult/CardTitle.jsx';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    marginTop:'50px',
+    paddingBottom:'50px',
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+
+  },
+}));
+
+export default function ResultsArea() {
+  const classes = useStyles();
+
+  const results = ["Result1", "Result2", "Result3", "Result4","Result5", "Result6", "Result7", "Result8",];
+  const example = {
+    "tipo":"Titulo",
+    "titulo": "Título I",
+    "descripcion": "GENERALIDADES",
+    "id": "123456",
+    "capitulos" : [
+      {
+
+        "tipo":"Capitulo",
+        "articulos" : [
+          {
+            "tipo":"Articulo",
+            "titulo": "Titulo de artículo ejemplo",
+            "paragrafos" : [
+              {
+                "numero" : 1,
+                "descripcion": "Descripcion ejm",
+                "notas":[
+                  "nota1",
+                  "nota2"
+                ],
+
+                "keywords":[
+                  "Keyword1",
+                  "Keyword2"
+                ]
+              }
+            ],
+            "multimedia" : [
+              {
+                "tipo": "video",
+                "url" : "www.videejemplo.com"
+              }
+            ]
+
+          }
+        ]
+      }
+    ]
+    ,
+    "multimedia" : [
+      {
+        "tipo": "video",
+        "url" : "www.videejemplo.com"
+      },
+      {
+        "tipo": "imagen",
+        "url" : "https://wallpapercave.com/wp/wp6476165.jpg"
+      }
+    ]
+  }
+
+  return (
+    <div className={classes.root}>
+      <Grid container spacing={3}>
+        {
+            results.map((res, i)=>{
+                return(
+                    <Grid key ={i} item xs={12} sm={6} md={4}>
+                        <CardTitle serverData={example}/>
+                    </Grid>
+                )
+            })               
+        }  
+      </Grid>
+    </div>
+  );
+}
