@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import CardTitle from '../CardResult/CardTitle.jsx';
+import CardChapter from '../CardResult/CardChapter.jsx';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -81,6 +82,16 @@ export default function ResultsArea() {
                 return(
                     <Grid key ={i} item xs={12} sm={6} md={4}>
                         <CardTitle serverData={example}/>
+                    </Grid>
+                )
+            })               
+        } 
+
+        {
+            results.map((res, i)=>{
+                return(
+                    <Grid key ={i} item xs={12} sm={6} md={4}>
+                        <CardChapter serverData={example}/>
                     </Grid>
                 )
             })               

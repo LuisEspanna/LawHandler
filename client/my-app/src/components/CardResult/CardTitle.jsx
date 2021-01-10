@@ -53,7 +53,6 @@ export default function CardTitle({serverData}) {
         <CardMedia
           className={classes.media}
           image="https://wallpapercave.com/wp/wp6476165.jpg"
-          title="Contemplative Reptile"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">

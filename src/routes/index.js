@@ -34,17 +34,35 @@ router.get('/api/titles', (req, res)=>{
           {
     
             "tipo":"Capitulo",
+            "descripcion": "REQUISITOS PARA EJERCER LA INGENIERÍA, SUS PROFESIONES AFINES Y SUS PROFESIONES AUXILIARES.",
             "articulos" : [
               {
                 "tipo":"Articulo",
                 "titulo": "Titulo de artículo ejemplo",
+                "descripcion": "Descripcion articulo ejemplo",
+                "literales" : [
+                  {
+                    "literal" : "a",
+                    "descripcion": "Descripcion literal a",
+                    "estado":"tachado",
+                    "notas":[
+                      "nota1 literal a",
+                      "nota2 literal a"
+                    ],
+    
+                    "keywords":[
+                      "Keyword1",
+                      "Keyword2"
+                    ]
+                  }
+                ],
                 "paragrafos" : [
                   {
                     "numero" : 1,
                     "descripcion": "Descripcion ejm",
                     "notas":[
-                      "nota1",
-                      "nota2"
+                      "nota1 paragrafo",
+                      "nota2 paragrafo"
                     ],
     
                     "keywords":[
