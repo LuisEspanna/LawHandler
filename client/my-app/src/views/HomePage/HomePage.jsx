@@ -21,6 +21,7 @@ import styles from "../../assets/jss/material-kit-react/views/components.js";
 
 import imageBackground from "../../assets/img/bg4.jpg";
 import SearchArea from "../../components/SearchArea/SearchArea.jsx";
+import SectionArticle from "../../components/Sections/SectionArticle.jsx";
 
 const useStyles = makeStyles(styles);
 
@@ -62,6 +63,8 @@ export default function Components(props) {
       <div className={classNames(classes.main, classes.mainRaised)}>
         
         <SearchArea/>
+
+        <SectionArticle/>
 
         <GridItem md={12} className={classes.textCenter}>
           <Link to={"/login"} className={classes.link}>
