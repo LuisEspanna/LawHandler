@@ -9,6 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import SaveIcon from '@material-ui/icons/Save';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -68,7 +69,9 @@ export default function MarkdownInput({multiline, labelText}){
             }
             
             
-            <GridItem xs sm={5}>
+            <GridItem 
+                xs 
+                sm={(edit)?5:10}>
                 <ReactMarkdown children={value} plugins={[[gfm, {singleTilde: false}]]}/>
             </GridItem>
 
@@ -79,9 +82,12 @@ export default function MarkdownInput({multiline, labelText}){
                         <SaveIcon />
                     </IconButton>
                 </GridItem>:
-                <GridItem xs={1}>
+                <GridItem xs={2}>
                     <IconButton onClick={handleEdit}>
                         <EditIcon />
+                    </IconButton>
+                    <IconButton>
+                        <DeleteIcon />
                     </IconButton>
                 </GridItem>
             }

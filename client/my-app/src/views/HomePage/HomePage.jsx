@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // react components for routing our app without refresh
@@ -23,12 +24,24 @@ import imageBackground from "../../assets/img/bg4.jpg";
 import SearchArea from "../../components/SearchArea/SearchArea.jsx";
 import SectionArticle from "../../components/Sections/SectionArticle.jsx";
 
+import {useDispatch } from 'react-redux';
+//actions
+
+import {startLoadingTitles, loadTitles} from '../../redux/actions/titles/titles.js';
+
 const useStyles = makeStyles(styles);
 
 
 export default function Components(props) {
   const classes = useStyles();
   const { ...rest } = props;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadTitles([]));
+    dispatch(startLoadingTitles());
+  });
+
   return (
     <div>
       <Header
