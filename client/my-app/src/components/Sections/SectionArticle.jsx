@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import ReactMarkdown from 'react-markdown';
-import gfm from 'remark-gfm';
+import MarkdownInput from '../CustomInput/MarkdownInput.jsx';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -13,15 +12,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const markdown = `
-~~Texto tachado~~`;
+
 
 export default function SectionArticle() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <ReactMarkdown children={markdown} plugins={[[gfm, {singleTilde: false}]]}/>
+      <MarkdownInput/>
     </div>
   );
 }

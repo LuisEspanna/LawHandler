@@ -62,9 +62,9 @@ export default function Components(props) {
 
       <div className={classNames(classes.main, classes.mainRaised)}>
         
-        <SearchArea/>
-
         <SectionArticle/>
+
+        <SearchArea/>
 
         <GridItem md={12} className={classes.textCenter}>
           <Link to={"/login"} className={classes.link}>
