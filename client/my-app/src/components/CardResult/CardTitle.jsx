@@ -23,37 +23,40 @@ export default function CardTitle({serverData}) {
   const [data, setData] = useState(0);
 
   useEffect(() => {
-      console.log("cardTitleinfo");
+      
       var titulo = serverData.titulo;
-    var descripcion = serverData.descripcion;
-    var capitulos = ("Capitulos: " + serverData.capitulos.length);
-    var imagen = undefined;
+      var descripcion = serverData.descripcion;
+      var capitulos = ("Capitulos: " + serverData.capitulos.length);
+      var imagen = undefined;
 
-    if(data.multimedia){
-        for (let i = 0; i < serverData.multimedia; i++) {
-            if(data.multimedia[i].tipo === "imagen"){
-                imagen = serverData.multimedia[i].url;
-                break;
-            }            
-        }
-    }
+      if(serverData.multimedia){
+          for (let i = 0; i < serverData.multimedia.length; i++) {
+              if(serverData.multimedia[i].tipo === "imagen"){
+                  imagen = serverData.multimedia[i].url;
+                  break;
+              }            
+          }
+      }
 
-    setData({
-        titulo,
-        descripcion,
-        capitulos,
-        imagen
-    });
-  }, [serverData.titulo, serverData.descripcion, serverData.capitulos.length, serverData.multimedia, data.multimedia]);
+      setData({
+          titulo,
+          descripcion,
+          capitulos,
+          imagen
+      });
+    }, [serverData.titulo, serverData.descripcion, serverData.capitulos.length, serverData.multimedia, data.multimedia]);
 
 
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image="https://wallpapercave.com/wp/wp6476165.jpg"
-        />
+        {
+          data.imagen ? 
+            <CardMedia
+              className={classes.media}
+              image={data.imagen}
+            />:<div></div>
+        }
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {data.titulo}

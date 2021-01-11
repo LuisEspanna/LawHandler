@@ -28,42 +28,65 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SimpleCard() {
-  const classes = useStyles();
-  const [image] = useState(true);
+export default function SimpleCard({serverData, titleParent}) {
+    const classes = useStyles();
 
-  return (
-    <Card className={classes.root}>
-      <CardActionArea>
-        {
-            image?
-            <CardMedia
-                className={classes.media}
-                image="https://www.teahub.io/photos/full/16-169722_court-of-law.jpg"
-            />
-            :<div></div>
-        }  
-        <CardContent>
-            <Typography className={classes.title} color="textSecondary" gutterBottom>
-                Pertenece a: Título I
-            </Typography>
-            <Typography variant="h5" component="h2">
-                Capítulo 1
-            </Typography>
-            <Typography className={classes.pos} color="textSecondary">
-                Numero de artículos: 1
-            </Typography>
-            <Typography className={classes.pos} color="textSecondary">
-                Numero de Parágrafos: 4
-            </Typography>
-            <Typography variant="body2" component="p">
-                REQUISITOS PARA EJERCER LA INGENIERÍA, SUS PROFESIONES AFINES Y SUS PROFESIONES AUXILIARES.
-            </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-            <Button color="primary" simple>Leer más</Button>
-      </CardActions>  
-    </Card>
-  );
+    const [data, setData] = useState(0);
+
+    useEffect(() => {
+        
+        var titulo = serverData.titulo;
+        var descripcion = serverData.descripcion;
+        var articulos = ("Artículos: " + serverData.articulos.length);
+        var imagen = undefined;
+        
+
+        if(serverData.multimedia){
+            for (let i = 0; i < serverData.multimedia.length; i++) {
+                if(serverData.multimedia[i].tipo === "imagen"){
+                    imagen = serverData.multimedia[i].url;
+                    break;
+                }            
+            }
+        }
+
+        setData({
+            titulo,
+            descripcion,
+            articulos,
+            imagen,
+        });
+    }, [serverData.titulo, serverData.descripcion, serverData.articulos.length, serverData.multimedia, data.multimedia]);
+
+    return (
+        <Card className={classes.root}>
+        <CardActionArea>
+            {
+                data.imagen?
+                <CardMedia
+                    className={classes.media}
+                    image={data.imagen}
+                />
+                :<div></div>
+            }  
+            <CardContent>
+                <Typography className={classes.title} color="textSecondary" gutterBottom>
+                    Pertenece a: {titleParent}
+                </Typography>
+                <Typography variant="h5" component="h2" gutterBottom>
+                    {data.titulo}
+                </Typography>
+                <Typography variant="body2" component="p" gutterBottom>
+                    {data.descripcion}
+                </Typography>
+                <Typography className={classes.title} color="textSecondary">
+                    {data.articulos}
+                </Typography>
+            </CardContent>
+        </CardActionArea>
+        <CardActions>
+                <Button color="primary" simple>Leer más</Button>
+        </CardActions>  
+        </Card>
+    );
 }

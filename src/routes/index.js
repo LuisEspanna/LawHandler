@@ -34,6 +34,7 @@ router.get('/api/titles', (req, res)=>{
           {
     
             "tipo":"Capitulo",
+            "titulo":"Capitulo I",
             "descripcion": "REQUISITOS PARA EJERCER LA INGENIERÍA, SUS PROFESIONES AFINES Y SUS PROFESIONES AUXILIARES.",
             "articulos" : [
               {
@@ -78,6 +79,16 @@ router.get('/api/titles', (req, res)=>{
                   }
                 ]
     
+              }
+            ],
+            "multimedia" : [
+              {
+                "tipo": "video",
+                "url" : "www.videejemplo.com"
+              },
+              {
+                "tipo": "imagen",
+                "url" : "https://wallpapercave.com/wp/wp6476165.jpg"
               }
             ]
           }

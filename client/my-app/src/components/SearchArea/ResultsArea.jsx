@@ -31,17 +31,36 @@ export default function ResultsArea() {
       {
 
         "tipo":"Capitulo",
+        "titulo":"Capitulo I",
+        "descripcion": "REQUISITOS PARA EJERCER LA INGENIERÍA, SUS PROFESIONES AFINES Y SUS PROFESIONES AUXILIARES.",
         "articulos" : [
           {
             "tipo":"Articulo",
             "titulo": "Titulo de artículo ejemplo",
+            "descripcion": "Descripcion articulo ejemplo",
+            "literales" : [
+              {
+                "literal" : "a",
+                "descripcion": "Descripcion literal a",
+                "estado":"tachado",
+                "notas":[
+                  "nota1 literal a",
+                  "nota2 literal a"
+                ],
+
+                "keywords":[
+                  "Keyword1",
+                  "Keyword2"
+                ]
+              }
+            ],
             "paragrafos" : [
               {
                 "numero" : 1,
                 "descripcion": "Descripcion ejm",
                 "notas":[
-                  "nota1",
-                  "nota2"
+                  "nota1 paragrafo",
+                  "nota2 paragrafo"
                 ],
 
                 "keywords":[
@@ -57,6 +76,16 @@ export default function ResultsArea() {
               }
             ]
 
+          }
+        ],
+        "multimedia" : [
+          {
+            "tipo": "video",
+            "url" : "www.videejemplo.com"
+          },
+          {
+            "tipo": "imagen",
+            "url" : "https://media.gettyimages.com/photos/the-palace-of-justice-of-colombia-during-the-mandatory-quarantine-in-picture-id1208429379?s=612x612"
           }
         ]
       }
@@ -91,7 +120,7 @@ export default function ResultsArea() {
             results.map((res, i)=>{
                 return(
                     <Grid key ={i} item xs={12} sm={6} md={4}>
-                        <CardChapter serverData={example}/>
+                        <CardChapter serverData={example.capitulos[0]} titleParent={example.titulo}/>
                     </Grid>
                 )
             })               
