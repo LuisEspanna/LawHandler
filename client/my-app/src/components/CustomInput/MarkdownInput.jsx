@@ -6,27 +6,42 @@ import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
+import EditIcon from '@material-ui/icons/Edit';
+import IconButton from '@material-ui/core/IconButton';
+import SaveIcon from '@material-ui/icons/Save';
 
 
 const useStyles = makeStyles((theme) => ({
     textArea: {
       width: '100%'
-    }
+    }, 
 }));  
 
 export default function MarkdownInput({multiline, labelText}){
     const classes = useStyles();
     const [value, setValue] = useState(`~~Texto tachado~~ el anterior es un ejemplo`);
+    const [edit, setEdit] = useState(false);
+    const [width, setWidth] = useState(12);
 
     const handleChange = (event) => {
         setValue(event.target.value);
     };
+
+    const handleEdit = () => {
+        setEdit(true);
+        setWidth(6);
+    };
+
+    const handleSave = () => {
+        setEdit(false);
+        setWidth(12);
+    };
     
     return (
         <GridContainer>
-            {
+            {   edit?
                 !multiline?
-                <GridItem xs={12} sm={12} md={4}>
+                <GridItem xs={width}>
                     <CustomInput
                         labelText={labelText}
                         id="float"
@@ -39,21 +54,37 @@ export default function MarkdownInput({multiline, labelText}){
                         }}                        
                     />
                 </GridItem>:
-                <GridItem xs={12} sm={12}>
+                <GridItem xs={width}>
                     <TextField
                         className={classes.textArea}
                         id="outlined-multiline-static"
-                        label="Descripción"
+                        label={labelText}
                         multiline
                         variant="outlined"
+                        value={value}
+                        onChange={handleChange}
                     />
-                </GridItem>
+                </GridItem>:<div></div>
             }
             
             
-            <GridItem xs={12} sm={12}>
+            <GridItem xs sm={5}>
                 <ReactMarkdown children={value} plugins={[[gfm, {singleTilde: false}]]}/>
             </GridItem>
+
+            {
+                edit?
+                <GridItem xs={1}>
+                    <IconButton onClick={handleSave}>
+                        <SaveIcon />
+                    </IconButton>
+                </GridItem>:
+                <GridItem xs={1}>
+                    <IconButton onClick={handleEdit}>
+                        <EditIcon />
+                    </IconButton>
+                </GridItem>
+            }
         </GridContainer>
     );
 }

@@ -19,7 +19,8 @@ export default function SectionArticle() {
 
   return (
     <div className={classes.root}>
-      <MarkdownInput/>
+      <MarkdownInput labelText={"Título"}/>
+      <MarkdownInput labelText={"Descripción"} multiline/>
     </div>
   );
 }
