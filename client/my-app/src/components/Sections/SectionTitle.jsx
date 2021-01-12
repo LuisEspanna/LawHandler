@@ -14,9 +14,14 @@ const useStyles = makeStyles((theme) => ({
 export default function SectionTitle({title}) {
   const classes = useStyles();
 
+  const onDeleteTitle = (id) =>{
+    console.log("Delete title: " + id);
+  }
+
+
   return (
     <div className={classes.root}>
-      <MarkdownInput labelText={"Título"} data={title.titulo}/>
+      <MarkdownInput labelText={"Título"} data={title.titulo} onDelete={onDeleteTitle}/>
       <MarkdownInput labelText={"Descripción Título"} data={title.descripcion} multiline/>
 
       {          

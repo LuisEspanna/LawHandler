@@ -88,10 +88,10 @@ export default function MarkdownInput({multiline, labelText, data, onDelete}){
                 <GridItem xs={onDelete?2:1}>
                     {
                         onDelete?
-                        <IconButton className={classes.button}>
+                        <IconButton className={classes.button} onClick={onDelete}>
                             <DeleteIcon />
                         </IconButton>:
-                        <div></div>
+                        null
                     }
                     <IconButton onClick={handleEdit} className={classes.button}>
                         <EditIcon />

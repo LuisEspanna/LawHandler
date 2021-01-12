@@ -13,11 +13,13 @@ const useStyles = makeStyles((theme) => ({
 export default function SectionChapter({chapter}) {
   const classes = useStyles();
 
-  
+  const onDeleteChapter = (id) =>{
+    console.log("Delete chapter: " + id);
+  }
 
   return (
     <div className={classes.root}>
-      <MarkdownInput labelText={"Título capítulo"} data={chapter.titulo}/>
+      <MarkdownInput labelText={"Título capítulo"} data={chapter.titulo} onDelete={onDeleteChapter}/>
       <MarkdownInput labelText={"Descripción capítulo"} data={chapter.descripcion} multiline/>
 
       {       

@@ -16,9 +16,14 @@ const useStyles = makeStyles((theme) => ({
 export default function SectionArticle({article}) {
   const classes = useStyles();
 
+  const onDeleteArticle = (id) =>{
+    console.log("Delete article: " + id);
+  }
+
+
   return (
     <div className={classes.root}>
-      <MarkdownInput labelText={"Título artículo"} data={article.titulo} onDelete={()=>{console.log(":v")}}/>
+      <MarkdownInput labelText={"Título artículo"} data={article.titulo} onDelete={onDeleteArticle}/>
       <MarkdownInput labelText={"Descripción artículo"}  multiline data={article.descripcion} />
             
       <Button color="primary">Agregar literal</Button>
