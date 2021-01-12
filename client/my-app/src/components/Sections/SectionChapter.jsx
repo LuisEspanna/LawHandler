@@ -23,7 +23,6 @@ export default function SectionChapter({chapter}) {
       {       
           chapter &&
           chapter.articulos.map((articulo,i) => {
-              console.log(articulo)
               return (
                 <SectionArticle article={articulo} key={i}/>
               )

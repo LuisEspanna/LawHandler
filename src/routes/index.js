@@ -34,12 +34,12 @@ router.get('/api/titles', (req, res)=>{
           {
     
             "tipo":"Capitulo",
-            "titulo":"## Capitulo I",
+            "titulo":"## CAPÍTULO I",
             "descripcion": "## REQUISITOS PARA EJERCER LA INGENIERÍA, SUS PROFESIONES AFINES Y SUS PROFESIONES AUXILIARES.",
             "articulos" : [
               {
                 "tipo":"Articulo",
-                "titulo": "## Titulo de artículo ejemplo",
+                "titulo": "## ARTÍCULO 1o.",
                 "descripcion": "## Descripcion articulo ejemplo \n Más descripción ~~texto tachado~~",
                 "literales" : [
                   {

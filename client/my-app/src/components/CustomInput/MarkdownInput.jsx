@@ -16,9 +16,12 @@ const useStyles = makeStyles((theme) => ({
     textArea: {
       width: '100%'
     }, 
+    button:{
+        float:'right'
+    }
 }));  
 
-export default function MarkdownInput({multiline, labelText, data}){
+export default function MarkdownInput({multiline, labelText, data, onDelete}){
     const classes = useStyles();
     const [value, setValue] = useState(data);
     const [edit, setEdit] = useState(false);
@@ -71,24 +74,29 @@ export default function MarkdownInput({multiline, labelText, data}){
             
             <GridItem 
                 xs 
-                sm={(edit)?5:10}>
+                sm={(edit)?5:onDelete?10:11}>
                 <ReactMarkdown children={value} plugins={[[gfm, {singleTilde: false}]]}/>
             </GridItem>
 
             {
                 edit?
                 <GridItem xs={1}>
-                    <IconButton onClick={handleSave}>
+                    <IconButton onClick={handleSave} className={classes.button}>
                         <SaveIcon />
                     </IconButton>
                 </GridItem>:
-                <GridItem xs={2}>
-                    <IconButton onClick={handleEdit}>
+                <GridItem xs={onDelete?2:1}>
+                    {
+                        onDelete?
+                        <IconButton className={classes.button}>
+                            <DeleteIcon />
+                        </IconButton>:
+                        <div></div>
+                    }
+                    <IconButton onClick={handleEdit} className={classes.button}>
                         <EditIcon />
                     </IconButton>
-                    <IconButton>
-                        <DeleteIcon />
-                    </IconButton>
+                    
                 </GridItem>
             }
         </GridContainer>

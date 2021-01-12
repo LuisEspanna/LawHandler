@@ -18,7 +18,7 @@ export default function SectionArticle({article}) {
 
   return (
     <div className={classes.root}>
-      <MarkdownInput labelText={"Título artículo"} data={article.titulo}/>
+      <MarkdownInput labelText={"Título artículo"} data={article.titulo} onDelete={()=>{console.log(":v")}}/>
       <MarkdownInput labelText={"Descripción artículo"}  multiline data={article.descripcion} />
             
       <Button color="primary">Agregar literal</Button>
