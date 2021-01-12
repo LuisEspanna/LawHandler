@@ -1,12 +1,10 @@
-import React from 'react';
+
 import { makeStyles } from '@material-ui/core/styles';
 import MarkdownInput from '../CustomInput/MarkdownInput.jsx';
 import Button from '../CustomButtons/Button';
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: theme.spacing(3),
     minWidth: 120,
     paddingTop:'30px',
   }
@@ -15,16 +13,14 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function SectionArticle() {
+export default function SectionArticle({article}) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <MarkdownInput labelText={"Título artículo"}/>
-      <MarkdownInput labelText={"Descripción artículo"} multiline/>
-
-
-      
+      <MarkdownInput labelText={"Título artículo"} data={article.titulo}/>
+      <MarkdownInput labelText={"Descripción artículo"}  multiline data={article.descripcion} />
+            
       <Button color="primary">Agregar literal</Button>
       <Button color="primary">Agregar Parágrafo</Button>
 

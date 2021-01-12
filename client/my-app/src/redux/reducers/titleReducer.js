@@ -1,8 +1,6 @@
 import {types} from '../actions/';
 
-const initState = {
-    titles: [],
-}
+const initState = []
 
 function reducer( state = initState, action ) {
     

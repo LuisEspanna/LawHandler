@@ -18,9 +18,9 @@ const useStyles = makeStyles((theme) => ({
     }, 
 }));  
 
-export default function MarkdownInput({multiline, labelText}){
+export default function MarkdownInput({multiline, labelText, data}){
     const classes = useStyles();
-    const [value, setValue] = useState(`~~Texto tachado~~ el anterior es un ejemplo`);
+    const [value, setValue] = useState(data);
     const [edit, setEdit] = useState(false);
     const [width, setWidth] = useState(12);
 

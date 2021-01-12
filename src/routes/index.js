@@ -27,20 +27,20 @@ router.get('/api/titles', (req, res)=>{
     let titles = [
       {
         "tipo":"Titulo",
-        "titulo": "Título I",
-        "descripcion": "GENERALIDADES",
+        "titulo": "## Título I",
+        "descripcion": "## GENERALIDADES",
         "id": "123456",
         "capitulos" : [
           {
     
             "tipo":"Capitulo",
-            "titulo":"Capitulo I",
-            "descripcion": "REQUISITOS PARA EJERCER LA INGENIERÍA, SUS PROFESIONES AFINES Y SUS PROFESIONES AUXILIARES.",
+            "titulo":"## Capitulo I",
+            "descripcion": "## REQUISITOS PARA EJERCER LA INGENIERÍA, SUS PROFESIONES AFINES Y SUS PROFESIONES AUXILIARES.",
             "articulos" : [
               {
                 "tipo":"Articulo",
-                "titulo": "Titulo de artículo ejemplo",
-                "descripcion": "Descripcion articulo ejemplo",
+                "titulo": "## Titulo de artículo ejemplo",
+                "descripcion": "## Descripcion articulo ejemplo \n Más descripción ~~texto tachado~~",
                 "literales" : [
                   {
                     "literal" : "a",

@@ -16,7 +16,7 @@ const composeEnhancers = (typeof window !== 'undefined' &&
 
 const reducers = combineReducers({
     ui: uiReducer,
-    titles: titlesReducer
+    titulos: titlesReducer
 })
 
 export default createStore(

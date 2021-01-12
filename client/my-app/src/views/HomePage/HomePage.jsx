@@ -16,17 +16,16 @@ import GridItem from "../../components/Grid/GridItem.js";
 import Button from "../../components/CustomButtons/Button.js";
 import Parallax from "../../components/Parallax/Parallax.js";
 
-
 import styles from "../../assets/jss/material-kit-react/views/components.js";
-
 
 import imageBackground from "../../assets/img/bg4.jpg";
 import SearchArea from "../../components/SearchArea/SearchArea.jsx";
-import SectionArticle from "../../components/Sections/SectionArticle.jsx";
 
-import {useDispatch } from 'react-redux';
+import {useDispatch, useSelector } from 'react-redux';
+
+import SectionTitle from '../../components/Sections/SectionTitle.jsx';
+
 //actions
-
 import {startLoadingTitles, loadTitles} from '../../redux/actions/titles/titles.js';
 
 const useStyles = makeStyles(styles);
@@ -36,11 +35,13 @@ export default function Components(props) {
   const classes = useStyles();
   const { ...rest } = props;
   const dispatch = useDispatch();
+  
+  const  titulos  = useSelector( state => state.titulos );
 
   useEffect(() => {
     dispatch(loadTitles([]));
     dispatch(startLoadingTitles());
-  });
+  },[dispatch]);
 
   return (
     <div>
@@ -75,7 +76,15 @@ export default function Components(props) {
 
       <div className={classNames(classes.main, classes.mainRaised)}>
         
-        <SectionArticle/>
+        {
+          titulos && 
+          titulos.map((titulo, i) => {
+            return (
+              <SectionTitle title={titulo} key={i}/>
+            )
+          })
+        }
+        
 
         <SearchArea/>
 
