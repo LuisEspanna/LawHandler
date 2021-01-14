@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import  { useState, useEffect } from 'react';
 import GridContainer from "../Grid/GridContainer.js";
 import GridItem from "../Grid/GridItem.js";
 import CustomInput from "./CustomInput.js";
@@ -18,14 +18,20 @@ const useStyles = makeStyles((theme) => ({
     }, 
     button:{
         float:'right'
-    }
+    }, 
+    display:'inline-block'
 }));  
 
-export default function MarkdownInput({multiline, labelText, data, onDelete}){
+export default function MarkdownInput({multiline, labelText, data, onDelete, maxWidth}){
     const classes = useStyles();
     const [value, setValue] = useState(data);
     const [edit, setEdit] = useState(false);
     const [width, setWidth] = useState(12);
+    const [defaultWidth, setDefaultWidth] = useState(12);
+
+    useEffect(() => {
+        (maxWidth)?setDefaultWidth(maxWidth):setDefaultWidth(12);
+    },[maxWidth]);
 
     const handleChange = (event) => {
         setValue(event.target.value);
@@ -33,12 +39,12 @@ export default function MarkdownInput({multiline, labelText, data, onDelete}){
 
     const handleEdit = () => {
         setEdit(true);
-        setWidth(6);
+        setWidth(defaultWidth/2);
     };
 
     const handleSave = () => {
         setEdit(false);
-        setWidth(12);
+        setWidth(defaultWidth);
     };
     
     return (
@@ -74,7 +80,7 @@ export default function MarkdownInput({multiline, labelText, data, onDelete}){
             
             <GridItem 
                 xs 
-                sm={(edit)?5:onDelete?10:11}>
+                sm={(edit)?5:onDelete?defaultWidth-2:defaultWidth-1}>
                 <ReactMarkdown children={value} plugins={[[gfm, {singleTilde: false}]]}/>
             </GridItem>
 

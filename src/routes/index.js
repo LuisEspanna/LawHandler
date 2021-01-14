@@ -45,7 +45,7 @@ router.get('/api/titles', (req, res)=>{
                 "literales" : [
                   {
                     "id":"7879445",
-                    "literal" : "a",
+                    "titulo" : "### a)",
                     "descripcion": "Descripcion literal a",
                     "notas":[
                       "nota1 literal a",
@@ -60,7 +60,8 @@ router.get('/api/titles', (req, res)=>{
                 ],
                 "paragrafos" : [
                   {
-                    "numero" : 1,
+                    "id":"74216458",
+                    "titulo" : "### Parágrafo 1",
                     "descripcion": "Descripcion ejm",
                     "notas":[
                       "nota1 paragrafo",
@@ -79,7 +80,6 @@ router.get('/api/titles', (req, res)=>{
                     "url" : "www.videejemplo.com"
                   }
                 ]
-    
               }
             ],
             "multimedia" : [
@@ -91,6 +91,10 @@ router.get('/api/titles', (req, res)=>{
                 "tipo": "imagen",
                 "url" : "https://wallpapercave.com/wp/wp6476165.jpg"
               }
+            ],    
+            "keywords":[
+              "Keyword1",
+              "Keyword2"
             ]
           }
         ]

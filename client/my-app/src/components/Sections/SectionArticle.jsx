@@ -2,6 +2,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import MarkdownInput from '../CustomInput/MarkdownInput.jsx';
 import Button from '../CustomButtons/Button';
+import Literal from '../Article/Literal.jsx';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -9,8 +10,6 @@ const useStyles = makeStyles((theme) => ({
     paddingTop:'30px',
   }
 }));
-
-
 
 
 export default function SectionArticle({article}) {
@@ -26,6 +25,13 @@ export default function SectionArticle({article}) {
       <MarkdownInput labelText={"Título artículo"} data={article.titulo} onDelete={onDeleteArticle}/>
       <MarkdownInput labelText={"Descripción artículo"}  multiline data={article.descripcion} />
             
+      {
+        article.literales &&
+        article.literales.map((literal,i) => {
+          return (<Literal literal={literal} key={i}/>)
+        })
+      }
+
       <Button color="primary">Agregar literal</Button>
       <Button color="primary">Agregar Parágrafo</Button>
 
