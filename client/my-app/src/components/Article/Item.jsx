@@ -2,6 +2,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import MarkdownInput from '../CustomInput/MarkdownInput.jsx';
 import Typography from '@material-ui/core/Typography';
+import KeyWords from '../KeyWords/KeyWords';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,7 +26,7 @@ export default function Item({data}) {
       <MarkdownInput labelText={"Descripción Literal"}  multiline data={data.descripcion} />
       
       <Typography variant="h6" gutterBottom>
-        Notas
+        Notas:
       </Typography>
 
       {
@@ -34,6 +35,9 @@ export default function Item({data}) {
           return (<MarkdownInput key={i} labelText={"Nota"} data={nota} onDelete={onDeleteLiteral} />)
         })
       }
+
+    <KeyWords/>
+
     </div>
   );
 }

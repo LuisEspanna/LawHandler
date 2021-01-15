@@ -28,20 +28,20 @@ router.get('/api/titles', (req, res)=>{
       {
         "tipo":"Titulo",
         "titulo": "## TÍTULO I",
-        "descripcion": "## GENERALIDADES",
+        "descripcion": "### GENERALIDADES",
         "id": "123456",
         "capitulos" : [
           {
             "id":"11222345",
             "tipo":"Capitulo",
-            "titulo":"## CAPÍTULO I",
-            "descripcion": "## REQUISITOS PARA EJERCER LA INGENIERÍA, SUS PROFESIONES AFINES Y SUS PROFESIONES AUXILIARES.",
+            "titulo":"### CAPÍTULO I",
+            "descripcion": "### REQUISITOS PARA EJERCER LA INGENIERÍA, SUS PROFESIONES AFINES Y SUS PROFESIONES AUXILIARES.",
             "articulos" : [
               {
                 "id":"44564451",
                 "tipo":"Articulo",
-                "titulo": "## ARTÍCULO 1o.",
-                "descripcion": "## Descripcion articulo ejemplo \n Más descripción ~~texto tachado~~",
+                "titulo": "### ARTÍCULO 1o.",
+                "descripcion": "### Descripcion articulo ejemplo \n Más descripción ~~texto tachado~~",
                 "literales" : [
                   {
                     "id":"7879445",
