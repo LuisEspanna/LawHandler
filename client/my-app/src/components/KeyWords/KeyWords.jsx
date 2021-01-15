@@ -27,15 +27,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function KeyWords() {
+export default function KeyWords({data}) {
   const classes = useStyles();
-  const [chipData, setChipData] = React.useState([
-     'Angular' ,
-     'jQuery',
-     'Polymer',
-     'React',
-     'Vue.js',
-  ]);
+  const [chipData, setChipData] = React.useState([...data]);
 
   const addKeyword = (keyword) => {
     setChipData([...chipData, keyword]);

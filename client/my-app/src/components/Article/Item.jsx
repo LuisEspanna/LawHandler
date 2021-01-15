@@ -36,7 +36,7 @@ export default function Item({data}) {
         })
       }
 
-    <KeyWords/>
+    <KeyWords data={data.keywords}/>
 
     </div>
   );

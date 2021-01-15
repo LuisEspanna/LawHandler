@@ -52,10 +52,7 @@ router.get('/api/titles', (req, res)=>{
                       "**nota2 literal a**"
                     ],
     
-                    "keywords":[
-                      "Keyword1",
-                      "Keyword2"
-                    ]
+                    "keywords":[]
                   }
                 ],
                 "paragrafos" : [
