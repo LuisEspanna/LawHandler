@@ -45,11 +45,11 @@ router.get('/api/titles', (req, res)=>{
                 "literales" : [
                   {
                     "id":"7879445",
-                    "titulo" : "### a)",
+                    "titulo" : "**a)**",
                     "descripcion": "Descripcion literal a",
                     "notas":[
-                      "### nota1 literal a",
-                      "### nota2 literal a"
+                      "**nota1 literal a**",
+                      "**nota2 literal a**"
                     ],
     
                     "keywords":[
@@ -67,7 +67,6 @@ router.get('/api/titles', (req, res)=>{
                       "### ~~nota1 paragrafo~~",
                       "### ~~nota2 paragrafo~~"
                     ],
-    
                     "keywords":[
                       "Keyword1",
                       "Keyword2"
@@ -79,6 +78,11 @@ router.get('/api/titles', (req, res)=>{
                     "tipo": "video",
                     "url" : "www.videejemplo.com"
                   }
+                ]
+                ,
+                "keywords":[
+                  "Keyword1",
+                  "Keyword2"
                 ]
               }
             ],

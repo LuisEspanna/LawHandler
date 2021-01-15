@@ -1,16 +1,13 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
-import Paper from '@material-ui/core/Paper';
-import TagFacesIcon from '@material-ui/icons/TagFaces';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
 import GridContainer from "../Grid/GridContainer.js";
 import GridItem from "../Grid/GridItem.js";
+import KeyWordDialog from "../KeyWords/KeyWordDialog.jsx";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    
+    marginTop:'50px',
     justifyContent: 'center',
     flexWrap: 'wrap',
     listStyle: 'none',
@@ -33,33 +30,30 @@ const useStyles = makeStyles((theme) => ({
 export default function KeyWords() {
   const classes = useStyles();
   const [chipData, setChipData] = React.useState([
-    { key: 0, label: 'Angular' },
-    { key: 1, label: 'jQuery' },
-    { key: 2, label: 'Polymer' },
-    { key: 3, label: 'React' },
-    { key: 4, label: 'Vue.js' },
+     'Angular' ,
+     'jQuery',
+     'Polymer',
+     'React',
+     'Vue.js',
   ]);
 
+  const addKeyword = (keyword) => {
+    setChipData([...chipData, keyword]);
+  }
+
   const handleDelete = (chipToDelete) => () => {
-    setChipData((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));
+    setChipData((chips) => chips.filter((chip) => chip !== chipToDelete));
   };
 
   return (
-      <GridContainer>
+      <GridContainer className={classes.root}>
         <GridItem xs={11}>
-            {chipData.map((data) => {
-                let icon;
-
-                if (data.label === 'React') {
-                icon = <TagFacesIcon />;
-                }
-
+            {chipData.map((data, i) => {
                 return (
-                <div key={data.key} className={classes.box}>
+                <div key={i} className={classes.box}>
                     <Chip
-                        icon={icon}
-                        label={data.label}
-                        onDelete={data.label === 'React' ? undefined : handleDelete(data)}
+                        label={data}
+                        onDelete={ handleDelete(data)}
                         className={classes.chip}
                     />
                 </div>
@@ -68,9 +62,7 @@ export default function KeyWords() {
         </GridItem>
 
         <GridItem xs={1}>
-            <Fab color="primary" aria-label="add" className={classes.floatButton}>
-                <AddIcon />
-            </Fab>
+            <KeyWordDialog className={classes.floatButton} onSave={addKeyword}/>
         </GridItem>
       </GridContainer>
   );
