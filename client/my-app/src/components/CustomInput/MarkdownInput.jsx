@@ -9,8 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import SaveIcon from '@material-ui/icons/Save';
-import DeleteIcon from '@material-ui/icons/Delete';
-
+import DialogDelete from './DialogDeleteMarkdown.jsx';
 
 const useStyles = makeStyles((theme) => ({
     textArea: {
@@ -46,6 +45,7 @@ export default function MarkdownInput({multiline, labelText, data, onDelete, max
         setEdit(false);
         setWidth(defaultWidth);
     };
+
     
     return (
         <GridContainer>
@@ -94,9 +94,7 @@ export default function MarkdownInput({multiline, labelText, data, onDelete, max
                 <GridItem xs={onDelete?2:1}>
                     {
                         onDelete?
-                        <IconButton className={classes.button} onClick={onDelete}>
-                            <DeleteIcon />
-                        </IconButton>:
+                        <DialogDelete className={classes.button} onDelete={onDelete}/>:
                         null
                     }
                     <IconButton onClick={handleEdit} className={classes.button}>

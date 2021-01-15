@@ -17,5 +17,10 @@ export const startLoadingTitles = () => {
 export const loadTitles = (titles) => ({
     type: types.LOAD_TITLES,
     payload: titles
- })
+})
+
+export const removeTitle = (id) => ({
+    type: types.REMOVE_TITLE,
+    payload: id
+})
  

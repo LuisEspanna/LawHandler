@@ -4,5 +4,6 @@ export const types = {
 
     //Titles
     START_LOADING_TITLES : "START_LOADING_TITLES",
-    LOAD_TITLES : "LOAD_TITLES"
+    LOAD_TITLES : "LOAD_TITLES",
+    REMOVE_TITLE : "REMOVE_TITLE",
 }
