@@ -2,7 +2,8 @@
 import { makeStyles } from '@material-ui/core/styles';
 import MarkdownInput from '../CustomInput/MarkdownInput.jsx';
 import Button from '../CustomButtons/Button';
-import Literal from '../Article/Literal.jsx';
+import Item from '../Article/Item.jsx';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,7 +29,14 @@ export default function SectionArticle({article}) {
       {
         article.literales &&
         article.literales.map((literal,i) => {
-          return (<Literal literal={literal} key={i}/>)
+          return (<Item data={literal} key={i}/>)
+        })
+      }
+
+      {
+        article.paragrafos &&
+        article.paragrafos.map((paragrafo,i) => {
+          return (<Item data={paragrafo} key={i}/>)
         })
       }
 

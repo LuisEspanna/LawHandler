@@ -48,8 +48,8 @@ router.get('/api/titles', (req, res)=>{
                     "titulo" : "### a)",
                     "descripcion": "Descripcion literal a",
                     "notas":[
-                      "nota1 literal a",
-                      "nota2 literal a"
+                      "### nota1 literal a",
+                      "### nota2 literal a"
                     ],
     
                     "keywords":[
@@ -64,8 +64,8 @@ router.get('/api/titles', (req, res)=>{
                     "titulo" : "### Parágrafo 1",
                     "descripcion": "Descripcion ejm",
                     "notas":[
-                      "nota1 paragrafo",
-                      "nota2 paragrafo"
+                      "### ~~nota1 paragrafo~~",
+                      "### ~~nota2 paragrafo~~"
                     ],
     
                     "keywords":[
