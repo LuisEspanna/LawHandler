@@ -75,7 +75,7 @@ export default function SectionChapter({chapter, parent}) {
           chapter &&
           chapter.articulos.map((articulo,i) => {
               return (
-                <SectionArticle article={articulo} key={i}/>
+                <SectionArticle article={articulo} chapterId={chapter.id} title={parent} key={i}/>
               )
           })
       }
