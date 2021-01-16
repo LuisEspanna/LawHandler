@@ -51,12 +51,25 @@ export default function SectionChapter({chapter, parent}) {
     dispatch(updateTitle(title));
   }
 
+  const onEditKeyWords = (keywords) =>{
+    var title = {...parent};
+    console.log(keywords)
+    title.capitulos.map(capitulo => {
+      if(capitulo.id === chapter.id){
+        capitulo.keywords = keywords;
+      }
+      return capitulo;
+    });
+    
+    dispatch(updateTitle(title));
+  }
+
 
   return (
     <div className={classes.root}>
       <MarkdownInput onSave={onSaveTitle} labelText={"Título capítulo"} data={chapter.titulo} onDelete={() => onDeleteChapter(chapter.id)}/>
       <MarkdownInput onSave={onSaveDescription} labelText={"Descripción capítulo"} data={chapter.descripcion} multiline/>
-      <KeyWords data={chapter.keywords}/>
+      <KeyWords onChange={onEditKeyWords} data={chapter.keywords}/>
 
       {       
           chapter &&

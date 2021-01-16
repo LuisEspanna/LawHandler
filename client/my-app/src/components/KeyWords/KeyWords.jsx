@@ -27,16 +27,18 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function KeyWords({data}) {
+export default function KeyWords({data, onChange}) {
   const classes = useStyles();
   const [chipData, setChipData] = React.useState([...data]);
 
   const addKeyword = (keyword) => {
     setChipData([...chipData, keyword]);
+    onChange([...chipData, keyword]);
   }
 
   const handleDelete = (chipToDelete) => () => {
-    setChipData((chips) => chips.filter((chip) => chip !== chipToDelete));
+    setChipData(chipData.filter((chip) => chip !== chipToDelete));
+    onChange(chipData.filter((chip) => chip !== chipToDelete));
   };
 
   return (
