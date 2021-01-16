@@ -9,7 +9,7 @@ import {useDispatch} from 'react-redux';
 import {updateTitle} from '../../redux/actions/titles/titles';
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     minWidth: 120,
     paddingTop:'30px',
@@ -45,38 +45,27 @@ export default function Item({data, title, chapterId, articleId}) {
 
 
   const onSaveTitle = (value) =>{
-    /*
     var newTitle = {...title};
 
     title.capitulos.map(capitulo => {
       if(capitulo.id === chapterId){
         capitulo.articulos = capitulo.articulos.map(articulo => {
+          if(articulo.id === articleId){
+            articulo.literales = articulo.literales.map(literal => {
+              if(literal.id === data.id){
+                literal.titulo = value;
+              }
+              return literal;
+            });
 
-          if(articulo.id === article.id){
-            articulo.titulo = value;
+            articulo.paragrafos = articulo.paragrafos.map(paragrafo => {
+              if(paragrafo.id === data.id){
+                paragrafo.titulo = value;
+              }
+              return paragrafo;
+            });
+
           }
-
-          return articulo;
-        });
-      }
-      return capitulo;
-    });
-
-    dispatch(updateTitle(newTitle));*/
-  }
-
-  const onSaveDescription = (value) =>{
-    /*
-    var newTitle = {...title};
-
-    title.capitulos.map(capitulo => {
-      if(capitulo.id === chapterId){
-        capitulo.articulos = capitulo.articulos.map(articulo => {
-
-          if(articulo.id === article.id){
-            articulo.descripcion = value;
-          }
-
           return articulo;
         });
       }
@@ -84,14 +73,44 @@ export default function Item({data, title, chapterId, articleId}) {
     });
 
     dispatch(updateTitle(newTitle));
-    */
+  }
+
+  const onSaveDescription = (value) =>{
+    var newTitle = {...title};
+
+    title.capitulos.map(capitulo => {
+      if(capitulo.id === chapterId){
+        capitulo.articulos = capitulo.articulos.map(articulo => {
+          if(articulo.id === articleId){
+            articulo.literales = articulo.literales.map(literal => {
+              if(literal.id === data.id){
+                literal.descripcion = value;
+              }
+              return literal;
+            });
+
+            articulo.paragrafos = articulo.paragrafos.map(paragrafo => {
+              if(paragrafo.id === data.id){
+                paragrafo.descripcion = value;
+              }
+              return paragrafo;
+            });
+
+          }
+          return articulo;
+        });
+      }
+      return capitulo;
+    });
+
+    dispatch(updateTitle(newTitle));
   }
 
 
   return (
     <div className={classes.root}>
-      <MarkdownInput labelText={"Literal"} data={data.titulo} onDelete={()=>onDelete(data.id)} />
-      <MarkdownInput labelText={"Descripción Literal"}  multiline data={data.descripcion} />
+      <MarkdownInput onSave={onSaveTitle} labelText={"Item"} data={data.titulo} onDelete={()=>onDelete(data.id)} />
+      <MarkdownInput onSave={onSaveDescription} labelText={"Descripción Item"}  multiline data={data.descripcion} />
       
       <Typography variant="h6" gutterBottom>
         Notas:
