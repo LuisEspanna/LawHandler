@@ -139,8 +139,6 @@ export default function Item({data, title, chapterId, articleId, type}) {
   }
 
   const onEditNote = (value, index) =>{
-    
-    
     var newTitle = {...title};
 
     title.capitulos.map(capitulo => {
@@ -178,6 +176,37 @@ export default function Item({data, title, chapterId, articleId, type}) {
     dispatch(updateTitle(newTitle));
   }
 
+  const onEditKeyWords = (keywords) =>{
+    var newTitle = {...title};
+
+    title.capitulos.map(capitulo => {
+      if(capitulo.id === chapterId){
+        capitulo.articulos = capitulo.articulos.map(articulo => {
+          if(articulo.id === articleId){
+            if(type === 'literal' )
+            articulo.literales = articulo.literales.map(literal => {
+              if(literal.id === data.id){
+                literal.keywords = keywords;
+              }
+              return literal;
+            });
+            else
+            articulo.paragrafos = articulo.paragrafos.map(paragrafo => {
+              if(paragrafo.id === data.id){
+                paragrafo.keywords = keywords;
+              }
+              return paragrafo;
+            });
+
+          }
+          return articulo;
+        });
+      }
+      return capitulo;
+    });
+
+    dispatch(updateTitle(newTitle));
+  }
 
 
   return (
@@ -196,7 +225,7 @@ export default function Item({data, title, chapterId, articleId, type}) {
         })
       }
 
-    <KeyWords data={data.keywords}/>
+    <KeyWords data={data.keywords} onChange={onEditKeyWords}/>
 
     </div>
   );
