@@ -10,3 +10,13 @@ export const templateArticle = () => (
         "keywords":[]
     }
 );
+
+export const templateItem = (value) => (
+    {
+        "id":new Date().getTime(),
+        "titulo" : value,
+        "descripcion": "Ejemplo de descripción...",
+        "notas":[],
+        "keywords":[]
+    }
+);

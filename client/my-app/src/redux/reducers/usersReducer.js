@@ -1,7 +1,10 @@
 
 const initState = {
     users:[],
-    admin:undefined
+    admin:{
+        username:'luis',
+        image:'/'
+    }
 }
 
 function reducer( state = initState, action ) {

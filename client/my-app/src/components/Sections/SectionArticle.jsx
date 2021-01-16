@@ -5,6 +5,7 @@ import Button from '../CustomButtons/Button';
 import Item from '../Article/Item.jsx';
 import KeyWords from '../KeyWords/KeyWords';
 
+import {templateItem} from '../../utils';
 import {useDispatch, useSelector} from 'react-redux';
 
 //actions
@@ -95,6 +96,44 @@ export default function SectionArticle({article, chapterId, title}) {
     dispatch(updateTitle(title));
   }
 
+
+  const onNewLiteral = () =>{
+    var newTitle = {...title};
+    console.log("literal");
+    
+    newTitle.capitulos.map(capitulo => {
+      if(capitulo.id === chapterId){
+        capitulo.articulos = capitulo.articulos.map(articulo => {
+          if(articulo.id === article.id){
+            articulo.literales = [...articulo.literales, templateItem("### Nuevo literal") ];
+          }
+          return articulo;
+        });
+      }
+      return newTitle;
+    });
+    
+    dispatch(updateTitle(title));
+  }
+
+  const onNewParagraph = () =>{
+    var newTitle = {...title};
+    console.log("Para");
+    newTitle.capitulos.map(capitulo => {
+      if(capitulo.id === chapterId){
+        capitulo.articulos = capitulo.articulos.map(articulo => {
+          if(articulo.id === article.id){
+            articulo.paragrafos = [...articulo.paragrafos, templateItem("### Nuevo parágrafo") ];
+          }
+          return articulo;
+        });
+      }
+      return newTitle;
+    });
+    
+    dispatch(updateTitle(title));
+  }
+
   return (
     <div className={classes.root}>
       <MarkdownInput onSave={onSaveTitle} labelText={"Título artículo"} data={article.titulo} onDelete={() =>onDeleteArticle(article.id)}/>
@@ -103,8 +142,8 @@ export default function SectionArticle({article, chapterId, title}) {
         admin?
         <>
           <KeyWords data={article.keywords} onChange={onEditKeyWords}/>
-          <Button color="primary">Agregar literal</Button>
-          <Button color="primary">Agregar Parágrafo</Button>
+          <Button color="primary" onClick={onNewLiteral}>Agregar literal</Button>
+          <Button color="primary" onClick={onNewParagraph}>Agregar Parágrafo</Button>
         </>:
         null
       }
