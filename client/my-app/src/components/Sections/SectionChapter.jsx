@@ -22,15 +22,40 @@ export default function SectionChapter({chapter, parent}) {
   const onDeleteChapter = (id) =>{
     var title = {...parent};
     title.capitulos = parent.capitulos.filter(chapter => chapter.id !== id);
-
-    console.log(title);
     dispatch(updateTitle(title));
   }
 
+  const onSaveTitle = (value) =>{
+    var title = {...parent};
+
+    title.capitulos.map(capitulo => {
+      if(capitulo.id === chapter.id){
+        capitulo.titulo = value;
+      }
+      return capitulo;
+    });
+    
+    dispatch(updateTitle(title));
+  }
+
+  const onSaveDescription = (value) =>{
+    var title = {...parent};
+
+    title.capitulos.map(capitulo => {
+      if(capitulo.id === chapter.id){
+        capitulo.descripcion = value;
+      }
+      return capitulo;
+    });
+    
+    dispatch(updateTitle(title));
+  }
+
+
   return (
     <div className={classes.root}>
-      <MarkdownInput labelText={"Título capítulo"} data={chapter.titulo} onDelete={() => onDeleteChapter(chapter.id)}/>
-      <MarkdownInput labelText={"Descripción capítulo"} data={chapter.descripcion} multiline/>
+      <MarkdownInput onSave={onSaveTitle} labelText={"Título capítulo"} data={chapter.titulo} onDelete={() => onDeleteChapter(chapter.id)}/>
+      <MarkdownInput onSave={onSaveDescription} labelText={"Descripción capítulo"} data={chapter.descripcion} multiline/>
       <KeyWords data={chapter.keywords}/>
 
       {       

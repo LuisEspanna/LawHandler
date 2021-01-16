@@ -25,7 +25,7 @@ export default function SectionTitle({title}) {
   }
 
   const onSaveTitle = (value) =>{
-    console.log("Save title: " + value);
+    //console.log("Save title: " + value);
 
     var updatedTitle = {
       ...title
@@ -37,8 +37,14 @@ export default function SectionTitle({title}) {
   }
 
   const onSaveDescription = (value) =>{
-    console.log("Save description: " + value);
-    //dispatch(removeTitle(id));
+    //console.log("Save description: " + value);
+    var updatedTitle = {
+      ...title
+    };
+
+    updatedTitle.descripcion = value;
+    
+    dispatch(updateTitle(updatedTitle));
   }
 
   return (
