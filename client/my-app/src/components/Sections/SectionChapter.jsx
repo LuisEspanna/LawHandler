@@ -2,7 +2,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import MarkdownInput from '../CustomInput/MarkdownInput.jsx';
 import SectionArticle from './SectionArticle.jsx';
 import KeyWords from '../KeyWords/KeyWords';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import Button from '../CustomButtons/Button';
+
+import {templateArticle} from '../../utils';
 
 //actions
 import {updateTitle} from '../../redux/actions/titles/titles';
@@ -18,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SectionChapter({chapter, parent}) {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const  {admin}  = useSelector( state => state.users );
 
   const onDeleteChapter = (id) =>{
     var title = {...parent};
@@ -64,13 +68,32 @@ export default function SectionChapter({chapter, parent}) {
     dispatch(updateTitle(title));
   }
 
+  const onNewArticle = () =>{
+    var title = {...parent};
+    title.capitulos.map(capitulo => {
+      if(capitulo.id === chapter.id){
+        capitulo.articulos = [...capitulo.articulos, templateArticle()];
+      }
+      return capitulo;
+    });
+    
+    dispatch(updateTitle(title));
+  }
+
 
   return (
     <div className={classes.root}>
       <MarkdownInput onSave={onSaveTitle} labelText={"Título capítulo"} data={chapter.titulo} onDelete={() => onDeleteChapter(chapter.id)}/>
       <MarkdownInput onSave={onSaveDescription} labelText={"Descripción capítulo"} data={chapter.descripcion} multiline/>
-      <KeyWords onChange={onEditKeyWords} data={chapter.keywords}/>
-
+      {
+        admin?
+        <>
+          <KeyWords onChange={onEditKeyWords} data={chapter.keywords}/>
+          <Button color="primary" onClick={onNewArticle}>Agregar artículo</Button>
+        </>:
+        null
+      }
+      
       {       
           chapter &&
           chapter.articulos.map((articulo,i) => {

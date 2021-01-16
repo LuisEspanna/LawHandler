@@ -1,9 +1,8 @@
 
 import { makeStyles } from '@material-ui/core/styles';
 import MarkdownInput from '../CustomInput/MarkdownInput.jsx';
-import Typography from '@material-ui/core/Typography';
 import KeyWords from '../KeyWords/KeyWords';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Button from '../CustomButtons/Button';
 
 //actions
@@ -21,6 +20,7 @@ const useStyles = makeStyles(() => ({
 export default function Item({data, title, chapterId, articleId, type}) {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const  {admin}  = useSelector( state => state.users );
 
 
   const onDelete = (id) =>{
@@ -209,7 +209,7 @@ export default function Item({data, title, chapterId, articleId, type}) {
     dispatch(updateTitle(newTitle));
   }
 
-  const onNewNote = (value, index) =>{
+  const onNewNote = () =>{
     var newTitle = {...title};
 
     title.capitulos.map(capitulo => {
@@ -245,7 +245,14 @@ export default function Item({data, title, chapterId, articleId, type}) {
     <div className={classes.root}>
       <MarkdownInput onSave={onSaveTitle} labelText={"Item"} data={data.titulo} onDelete={()=>onDelete(data.id)} />
       <MarkdownInput onSave={onSaveDescription} labelText={"Descripción Item"}  multiline data={data.descripcion} />
-      <Button color="primary" onClick={onNewNote}>Agregar nota</Button>
+      {
+        admin?
+        <>
+          <Button color="primary" onClick={onNewNote}>Agregar nota</Button>
+        </>:
+        null
+      }
+      
 
       {
         data.notas && 
@@ -254,8 +261,13 @@ export default function Item({data, title, chapterId, articleId, type}) {
         })
       }
 
-    <KeyWords data={data.keywords} onChange={onEditKeyWords}/>
-
+      {
+        admin?
+        <>
+          <KeyWords data={data.keywords} onChange={onEditKeyWords}/>
+        </>:
+        null
+      }
     </div>
   );
 }

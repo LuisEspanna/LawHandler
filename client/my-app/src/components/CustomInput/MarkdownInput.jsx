@@ -10,6 +10,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import SaveIcon from '@material-ui/icons/Save';
 import DialogDelete from './DialogDeleteMarkdown.jsx';
+import { useSelector} from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
     textArea: {
@@ -27,6 +28,7 @@ export default function MarkdownInput({multiline, labelText, data, onDelete, max
     const [edit, setEdit] = useState(false);
     const [width, setWidth] = useState(12);
     const [defaultWidth, setDefaultWidth] = useState(12);
+    const  {admin}  = useSelector( state => state.users );
 
     useEffect(() => {
         (maxWidth)?setDefaultWidth(maxWidth):setDefaultWidth(12);
@@ -95,13 +97,20 @@ export default function MarkdownInput({multiline, labelText, data, onDelete, max
                 </GridItem>:
                 <GridItem xs={onDelete?2:1}>
                     {
-                        onDelete?
-                        <DialogDelete className={classes.button} onDelete={onDelete}/>:
+                        admin?
+                        <>
+                            {
+                                onDelete?
+                                <DialogDelete className={classes.button} onDelete={onDelete}/>:
+                                null
+                            }
+                            <IconButton onClick={handleEdit} className={classes.button}>
+                                <EditIcon />
+                            </IconButton>
+                        </>:
                         null
                     }
-                    <IconButton onClick={handleEdit} className={classes.button}>
-                        <EditIcon />
-                    </IconButton>
+                    
                     
                 </GridItem>
             }
