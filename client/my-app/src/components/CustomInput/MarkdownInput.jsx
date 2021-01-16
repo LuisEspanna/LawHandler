@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     display:'inline-block'
 }));  
 
-export default function MarkdownInput({multiline, labelText, data, onDelete, maxWidth}){
+export default function MarkdownInput({multiline, labelText, data, onDelete, maxWidth, onSave}){
     const classes = useStyles();
     const [value, setValue] = useState(data);
     const [edit, setEdit] = useState(false);
@@ -44,6 +44,7 @@ export default function MarkdownInput({multiline, labelText, data, onDelete, max
     const handleSave = () => {
         setEdit(false);
         setWidth(defaultWidth);
+        if(onSave)onSave(value);
     };
 
     

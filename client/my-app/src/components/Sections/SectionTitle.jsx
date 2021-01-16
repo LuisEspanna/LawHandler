@@ -4,7 +4,7 @@ import SectionChapter from './SectionChapter.jsx';
 import {useDispatch} from 'react-redux';
 
 //actions
-import {removeTitle} from '../../redux/actions/titles/titles';
+import {removeTitle, updateTitle} from '../../redux/actions/titles/titles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,17 +24,33 @@ export default function SectionTitle({title}) {
     dispatch(removeTitle(id));
   }
 
+  const onSaveTitle = (value) =>{
+    console.log("Save title: " + value);
+
+    var updatedTitle = {
+      ...title
+    };
+
+    updatedTitle.titulo = value;
+    
+    dispatch(updateTitle(updatedTitle));
+  }
+
+  const onSaveDescription = (value) =>{
+    console.log("Save description: " + value);
+    //dispatch(removeTitle(id));
+  }
 
   return (
     <div className={classes.root}>
-      <MarkdownInput labelText={"Título"} data={title.titulo} onDelete={() => onDeleteTitle(title.id)}/>
-      <MarkdownInput labelText={"Descripción Título"} data={title.descripcion} multiline/>
+      <MarkdownInput onSave={onSaveTitle} labelText={"Título"} data={title.titulo} onDelete={() => onDeleteTitle(title.id)}/>
+      <MarkdownInput onSave={onSaveDescription} labelText={"Descripción Título"} data={title.descripcion} multiline/>
 
       {          
         title &&
         title.capitulos.map((chapter,i) => {
               return (
-                <SectionChapter chapter={chapter} key={i}/>
+                <SectionChapter chapter={chapter} parent={title} key={i}/>
               )
           })
       }

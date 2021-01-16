@@ -8,8 +8,14 @@ function reducer( state = initState, action ) {
         case types.LOAD_TITLES:
             return action.payload
         
-            case types.REMOVE_TITLE:
-                return state.filter(title => title.id !== action.payload);
+        case types.REMOVE_TITLE:
+            return state.filter(title => title.id !== action.payload);
+
+        case types.UPDATE_TITLE:
+            let index = state.findIndex(t => (t.id === action.payload.id)); 
+
+            return [...state.slice(0, index), Object.assign({},state[index],action.payload), ...state.slice(index+1)];
+            
             
         default:
             return state;

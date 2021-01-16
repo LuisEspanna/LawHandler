@@ -23,4 +23,19 @@ export const removeTitle = (id) => ({
     type: types.REMOVE_TITLE,
     payload: id
 })
+
+export const updateTitle = (title) => ({
+    type: types.UPDATE_TITLE,
+    payload: {
+        ...title
+    }
+})
+
+export const removeChapter = (id, titleId) => ({
+    type: types.REMOVE_CHAPTER,
+    payload: {
+        id,
+        titleId
+    }
+})
  
