@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     display:'inline-block'
 }));  
 
-export default function MarkdownInput({multiline, labelText, data, onDelete, maxWidth, onSave}){
+export default function MarkdownInput({multiline, labelText, data, onDelete, maxWidth, onSave, index}){
     const classes = useStyles();
     const [value, setValue] = useState(data);
     const [edit, setEdit] = useState(false);
@@ -30,7 +30,8 @@ export default function MarkdownInput({multiline, labelText, data, onDelete, max
 
     useEffect(() => {
         (maxWidth)?setDefaultWidth(maxWidth):setDefaultWidth(12);
-    },[maxWidth]);
+        setValue(data);
+    },[maxWidth, data]);
 
     const handleChange = (event) => {
         setValue(event.target.value);
@@ -44,7 +45,7 @@ export default function MarkdownInput({multiline, labelText, data, onDelete, max
     const handleSave = () => {
         setEdit(false);
         setWidth(defaultWidth);
-        if(onSave)onSave(value);
+        if(onSave)onSave(value, index);
     };
 
     

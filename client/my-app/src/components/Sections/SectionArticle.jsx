@@ -83,14 +83,14 @@ export default function SectionArticle({article, chapterId, title}) {
       {
         article.literales &&
         article.literales.map((literal,i) => {
-          return (<Item data={literal}  key={i} articleId={article.id} chapterId={chapterId} title={title}/>)
+          return (<Item type={'literal'} data={literal}  key={i} articleId={article.id} chapterId={chapterId} title={title}/>)
         })
       }
 
       {
         article.paragrafos &&
         article.paragrafos.map((paragrafo,i) => {
-          return (<Item data={paragrafo} key={i} articleId={article.id} chapterId={chapterId} title={title}/>)
+          return (<Item type={'paragrafo'} data={paragrafo} key={i} articleId={article.id} chapterId={chapterId} title={title}/>)
         })
       }
 

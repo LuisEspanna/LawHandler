@@ -28,6 +28,13 @@ export default function DialogDeleteMarkdown({onDelete}) {
     setOpen(false);
   };
 
+  const handleOnDelete = () => {
+    if(onDelete){
+      setOpen(false);
+      onDelete();
+    }
+  };
+
   return (
     <div>
       <IconButton className={classes.button} onClick={handleClickOpen}>
@@ -49,7 +56,7 @@ export default function DialogDeleteMarkdown({onDelete}) {
           <Button onClick={handleClose} color="primary">
             Candelar
           </Button>
-          <Button onClick={onDelete} color="primary" autoFocus>
+          <Button onClick={handleOnDelete} color="primary" autoFocus>
             Eliminar
           </Button>
         </DialogActions>
