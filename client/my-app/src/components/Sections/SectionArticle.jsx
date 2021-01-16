@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import MarkdownInput from '../CustomInput/MarkdownInput.jsx';
 import Button from '../CustomButtons/Button';
 import Item from '../Article/Item.jsx';
+import KeyWords from '../KeyWords/KeyWords';
 
 import {useDispatch} from 'react-redux';
 
@@ -75,10 +76,29 @@ export default function SectionArticle({article, chapterId, title}) {
     dispatch(updateTitle(newTitle));
   }
 
+  const onEditKeyWords = (keywords) =>{
+    var newTitle = {...title};
+    
+    newTitle.capitulos.map(capitulo => {
+      if(capitulo.id === chapterId){
+        capitulo.articulos = capitulo.articulos.map(articulo => {
+          if(articulo.id === article.id){
+            articulo.keywords = keywords;
+          }
+          return articulo;
+        });
+      }
+      return newTitle;
+    });
+    
+    dispatch(updateTitle(title));
+  }
+
   return (
     <div className={classes.root}>
       <MarkdownInput onSave={onSaveTitle} labelText={"Título artículo"} data={article.titulo} onDelete={() =>onDeleteArticle(article.id)}/>
       <MarkdownInput onSave={onSaveDescription} labelText={"Descripción artículo"}  multiline data={article.descripcion} />
+      <KeyWords data={article.keywords} onChange={onEditKeyWords}/>
             
       {
         article.literales &&

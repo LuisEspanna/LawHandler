@@ -4,6 +4,7 @@ import MarkdownInput from '../CustomInput/MarkdownInput.jsx';
 import Typography from '@material-ui/core/Typography';
 import KeyWords from '../KeyWords/KeyWords';
 import {useDispatch} from 'react-redux';
+import Button from '../CustomButtons/Button';
 
 //actions
 import {updateTitle} from '../../redux/actions/titles/titles';
@@ -208,15 +209,43 @@ export default function Item({data, title, chapterId, articleId, type}) {
     dispatch(updateTitle(newTitle));
   }
 
+  const onNewNote = (value, index) =>{
+    var newTitle = {...title};
+
+    title.capitulos.map(capitulo => {
+      if(capitulo.id === chapterId){
+        capitulo.articulos = capitulo.articulos.map(articulo => {
+          if(articulo.id === articleId){
+            if(type === 'literal' )
+            articulo.literales = articulo.literales.map(literal => {
+              if(literal.id === data.id){
+                literal.notas = [...literal.notas, "**Nota agregada**"];
+              }
+              return literal;
+            });
+            else
+            articulo.paragrafos = articulo.paragrafos.map(paragrafo => {
+              if(paragrafo.id === data.id){
+                paragrafo.notas = paragrafo.notas = [...paragrafo.notas, "**Nota agregada**"];
+              }
+              return paragrafo;
+            });
+
+          }
+          return articulo;
+        });
+      }
+      return capitulo;
+    });
+
+    dispatch(updateTitle(newTitle));
+  }
 
   return (
     <div className={classes.root}>
       <MarkdownInput onSave={onSaveTitle} labelText={"Item"} data={data.titulo} onDelete={()=>onDelete(data.id)} />
       <MarkdownInput onSave={onSaveDescription} labelText={"Descripción Item"}  multiline data={data.descripcion} />
-      
-      <Typography variant="h6" gutterBottom>
-        Notas:
-      </Typography>
+      <Button color="primary" onClick={onNewNote}>Agregar nota</Button>
 
       {
         data.notas && 

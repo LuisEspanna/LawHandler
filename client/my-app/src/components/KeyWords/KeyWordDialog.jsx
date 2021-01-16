@@ -6,8 +6,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
+import AddIcon from '@material-ui/icons/AddCircleOutline';
+import IconButton from '@material-ui/core/IconButton';
 
 export default function FormDialog({onSave}) {
   const [open, setOpen] = React.useState(false);
@@ -32,9 +32,9 @@ export default function FormDialog({onSave}) {
 
   return (
     <div>
-      <Fab color="primary" aria-label="add" onClick={handleClickOpen}>
-          <AddIcon />
-      </Fab>
+      <IconButton onClick={handleClickOpen}>
+        <AddIcon />
+      </IconButton>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Nueva palabra clave</DialogTitle>
         <DialogContent>
