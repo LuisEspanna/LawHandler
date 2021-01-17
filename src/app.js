@@ -4,6 +4,7 @@ const exphbs = require('express-handlebars');
 const path = require('path');
 
 const app = express();
+var body_parser = require('body-parser');
 
 //setting
 app.set('port', process.env.PORT || 3001);
@@ -18,6 +19,8 @@ app.set('view engine', '.hbs');
 //midlewares
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended:false}));
+app.use(body_parser.urlencoded({extended:true}));
+app.use(express.json());
 
 //routes
 app.use(require('./routes/index'));

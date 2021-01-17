@@ -26,7 +26,7 @@ import AccordionTitle from '../../components/Accordion/AccordionTitle.jsx';
 import {templateTitle} from '../../utils';
 
 //actions
-import {addTitle} from '../../redux/actions/titles/titles';
+import {addTitle, startUpload} from '../../redux/actions/titles/titles';
 import {setChanges} from '../../redux/actions/ui/ui';
 import {setUser} from '../../redux/actions/users/users';
 
@@ -81,7 +81,10 @@ export default function ClippedDrawer() {
   };
 
   const onSaveChanges=()=>{
-    dispatch(setChanges(!changes));
+      if(changes){
+        dispatch(startUpload(titulos));
+      }
+      dispatch(setChanges(!changes));
   };
 
   const onLogout=()=>{

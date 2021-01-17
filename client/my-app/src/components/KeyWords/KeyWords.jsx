@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import GridContainer from "../Grid/GridContainer.js";
@@ -29,7 +29,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function KeyWords({data, onChange}) {
   const classes = useStyles();
-  const [chipData, setChipData] = React.useState([...data]);
+  const [chipData, setChipData] = React.useState([]);
+
+  useEffect(() => {
+    if(data){
+      setChipData([...data]);
+    }
+  },[data]);
 
   const addKeyword = (keyword) => {
     setChipData([...chipData, keyword]);

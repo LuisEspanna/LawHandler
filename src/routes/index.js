@@ -24,7 +24,6 @@ router.get('/api/', (req, res)=>{
 });
 
 router.post('/api/users', (req, res)=>{
-
   /*
     db.ref('Users').child("info").push('Ecample');
 
@@ -34,6 +33,12 @@ router.post('/api/users', (req, res)=>{
 });
 
 router.get('/api/titles', (req, res)=>{
+
+  db.ref('titles').once('value', (snapshot)=>{
+    var titles = snapshot.val();           
+    res.status(200).json(titles);
+  });
+    /*
     let titles = [
       {
         "tipo":"Titulo",
@@ -121,8 +126,14 @@ router.get('/api/titles', (req, res)=>{
           }
         ]
       }
-    ]
-    res.json(titles);
+    ]*/
+
+    //res.json(titles);
+});
+
+router.post('/api/titles', (req, res)=>{
+    db.ref('titles').set(req.body);
+    res.json({server:"ok"});
 });
 
 router.get('/', (req, res)=>{

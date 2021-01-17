@@ -46,8 +46,18 @@ export default function AccordionArticle({article, title, chapterId}) {
           id="panel1bh-header"
         >
           <Typography className={classes.heading}>{article.titulo}</Typography>
-          <Typography className={classes.secondaryHeading}>Literales: {article.literales.length +" "}</Typography>
-          <Typography className={classes.lastHeading}>Parágrafos: {article.literales.length}</Typography>
+          <Typography className={classes.secondaryHeading}>Literales: 
+            {
+              article.literales ?
+              article.literales.length +" ":"0"
+            }
+          </Typography>
+          <Typography className={classes.lastHeading}>Parágrafos: 
+            {
+              article.paragrafos ?
+              article.paragrafos.length:"0"
+            }
+            </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <SectionArticle  article={article} chapterId={chapterId} title={title}/>
