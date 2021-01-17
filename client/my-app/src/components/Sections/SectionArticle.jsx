@@ -17,14 +17,14 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 200,
     paddingTop:'30px',
     width:'100%'
-  }
+  },
 }));
 
 
 export default function SectionArticle({article, chapterId, title}) {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const  {admin}  = useSelector( state => state.users );
+  const  {user}  = useSelector( state => state.users );
 
   const onDeleteArticle = (id) =>{
     var newTitle = {...title};
@@ -142,7 +142,7 @@ export default function SectionArticle({article, chapterId, title}) {
       <MarkdownInput onSave={onSaveTitle} labelText={"Título artículo"} data={article.titulo} onDelete={() =>onDeleteArticle(article.id)}/>
       <MarkdownInput onSave={onSaveDescription} labelText={"Descripción artículo"}  multiline data={article.descripcion} />
       {
-        admin?
+        user?
         <>
           <KeyWords data={article.keywords} onChange={onEditKeyWords}/>
           <Button color="primary" onClick={onNewLiteral}>Agregar literal</Button>

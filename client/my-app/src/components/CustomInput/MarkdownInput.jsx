@@ -10,8 +10,10 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import SaveIcon from '@material-ui/icons/Save';
 import DialogDelete from './DialogDeleteMarkdown.jsx';
-import { useSelector} from 'react-redux';
+import { useSelector, useDispatch} from 'react-redux';
 import Tooltip from '@material-ui/core/Tooltip';
+
+import {setChanges} from '../../redux/actions/ui/ui';
 
 const useStyles = makeStyles((theme) => ({
     textArea: {
@@ -19,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     }, 
     button:{
         float:'right'
-    }, 
+    },
     display:'inline-block'
 }));  
 
@@ -29,7 +31,9 @@ export default function MarkdownInput({multiline, labelText, data, onDelete, max
     const [edit, setEdit] = useState(false);
     const [width, setWidth] = useState(12);
     const [defaultWidth, setDefaultWidth] = useState(12);
-    const  {admin}  = useSelector( state => state.users );
+    const  {user}  = useSelector( state => state.users );
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
         (maxWidth)?setDefaultWidth(maxWidth):setDefaultWidth(12);
@@ -46,6 +50,7 @@ export default function MarkdownInput({multiline, labelText, data, onDelete, max
     };
 
     const handleSave = () => {
+        dispatch(setChanges(true));
         setEdit(false);
         setWidth(defaultWidth);
         if(onSave)onSave(value, index);
@@ -100,7 +105,7 @@ export default function MarkdownInput({multiline, labelText, data, onDelete, max
                 </GridItem>:
                 <GridItem xs={onDelete?2:1}>
                     {
-                        admin?
+                        user?
                         <>
                             {
                                 onDelete?

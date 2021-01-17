@@ -10,6 +10,10 @@ import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import Tooltip from '@material-ui/core/Tooltip';
 
+import {useDispatch} from 'react-redux';
+import {setChanges} from '../../redux/actions/ui/ui';
+
+
 const useStyles = makeStyles((theme) => ({
     button:{
         float:'right'
@@ -19,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
 export default function DialogDeleteMarkdown({onDelete}) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const dispatch = useDispatch();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -31,6 +36,7 @@ export default function DialogDeleteMarkdown({onDelete}) {
   const handleOnDelete = () => {
     if(onDelete){
       setOpen(false);
+      dispatch(setChanges(true));
       onDelete();
     }
   };

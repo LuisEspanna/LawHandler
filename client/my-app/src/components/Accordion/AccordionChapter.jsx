@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: theme.typography.pxToRem(15),
     color: theme.palette.text.secondary,
   },
+  gridContainer:{
+    width:'100%'
+  }
 }));
 
 export default function AccordionChapter({chapter, parent}) {
@@ -46,7 +49,7 @@ export default function AccordionChapter({chapter, parent}) {
           <Typography className={classes.secondaryHeading}>Articulos: {chapter.articulos.length}</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <GridContainer xs>
+          <GridContainer className={classes.gridContainer}>
             <GridItem xs={12}>
               <SectionChapter chapter={chapter} parent={parent} showChildren={false}/>
             </GridItem>

@@ -25,6 +25,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: theme.typography.pxToRem(15),
     color: theme.palette.text.secondary,
   },
+  gridContainer:{
+    width:'100%'
+  }
 }));
 
 export default function ControlledAccordions({title}) {
@@ -48,7 +51,7 @@ export default function ControlledAccordions({title}) {
         </AccordionSummary>
         <AccordionDetails>
           
-          <GridContainer xs>
+          <GridContainer className={classes.gridContainer}>
             <GridItem xs={12}>
               <SectionTitle title={title} showChildren={false}/>
             </GridItem>

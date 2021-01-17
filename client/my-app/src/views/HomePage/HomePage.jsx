@@ -37,6 +37,7 @@ export default function Components(props) {
   const dispatch = useDispatch();
   
   const  titulos  = useSelector( state => state.titulos );
+  const  {user}  = useSelector( state => state.users );
 
   useEffect(() => {
     dispatch(loadTitles([]));
@@ -47,7 +48,7 @@ export default function Components(props) {
     <div>
       <Header
         brand="Law Handler"
-        rightLinks={<HeaderLinks />}
+        rightLinks={<HeaderLinks user={user}/>}
         fixed
         color="transparent"
         changeColorOnScroll={{
@@ -96,13 +97,17 @@ export default function Components(props) {
           </Link>
         </GridItem>
 
-        <GridItem md={12} className={classes.textCenter}>
-          <Link to={"/Admin"} className={classes.link}>
-            <Button color="primary" size="lg" simple>
-              View Admin Page
-            </Button>
-          </Link>
-        </GridItem>
+        {
+          user?
+          <GridItem md={12} className={classes.textCenter}>
+            <Link to={"/Admin"} className={classes.link}>
+              <Button color="primary" size="lg" simple>
+                View Admin Page
+              </Button>
+            </Link>
+          </GridItem>:null
+        }
+        
         
       </div>
       <Footer />

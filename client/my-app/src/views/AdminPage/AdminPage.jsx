@@ -10,7 +10,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Header from '../../components/Header/Header';
 import Button from '../../components/CustomButtons/Button';
-import Fab from '@material-ui/core/Fab';
 import SaveIcon from '@material-ui/icons/Save';
 
 
@@ -21,12 +20,10 @@ import ListIcon from '@material-ui/icons/ViewList';
 import LawIcon from '@material-ui/icons/ViewQuilt';
 import UsersIcon from '@material-ui/icons/Group';
 import ChartIcon from '@material-ui/icons/InsertChart';
-
+import Avatar from '@material-ui/core/Avatar';
 import ListSubheader from '@material-ui/core/ListSubheader';
-
 import styles from "../../assets/jss/material-kit-react/views/componentsSections/navbarsStyle.js";
 import {useSelector, useDispatch } from 'react-redux';
-
 import AccordionTitle from '../../components/Accordion/AccordionTitle.jsx';
 import {templateTitle} from '../../utils';
 
@@ -68,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'fixed',
     bottom: theme.spacing(2),
     right: theme.spacing(2),
-  }
+  },
 }));
 
 export default function ClippedDrawer() {
@@ -76,6 +73,7 @@ export default function ClippedDrawer() {
   const classes1 = useStyles1();
   const  titulos  = useSelector( state => state.titulos );
   const  {changes}  = useSelector( state => state.ui );
+  const  {user}  = useSelector( state => state.users );
   const dispatch = useDispatch();
 
 
@@ -97,20 +95,17 @@ export default function ClippedDrawer() {
                   rightLinks={
                       <List className={classes1.list}>
                           <ListItem className={classes1.listItem}>
-                              <Button
-                                  className={classes1.navLink + " " + classes1.navLinkActive}
-                                  color="transparent"
-                              >
-                                  Admin
-                            </Button>
-                          </ListItem>
-                          <ListItem className={classes1.listItem}>
                               <Button                                  
                                   className={classes1.navLink}
                                   color="transparent"
                               >
                                   Cerrar sesión
                               </Button>
+                          </ListItem>
+                          <ListItem className={classes1.listItem}>
+                              <Avatar>
+                                  {user.username.substring(0,1)}
+                              </Avatar>
                           </ListItem>
                       </List>
                   }
@@ -187,9 +182,10 @@ export default function ClippedDrawer() {
                 })
             }       
 
-            <Fab className={classes.fab} color={changes?'secondary':null} onClick={onSaveChanges}>
+            <Button size="lg" justIcon round color={changes?"primary":null} className={classes.fab} onClick={onSaveChanges}>
                 <SaveIcon/>
-            </Fab> 
+            </Button>
+            
             </main>
         </div>
   );

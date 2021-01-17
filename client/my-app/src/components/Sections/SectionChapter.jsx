@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SectionChapter({chapter, parent, showChildren}) {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const  {admin}  = useSelector( state => state.users );
+  const  {user}  = useSelector( state => state.users );
 
   const onDeleteChapter = (id) =>{
     var title = {...parent};
@@ -84,7 +84,7 @@ export default function SectionChapter({chapter, parent, showChildren}) {
       <MarkdownInput onSave={onSaveTitle} labelText={"Título capítulo"} data={chapter.titulo} onDelete={() => onDeleteChapter(chapter.id)}/>
       <MarkdownInput onSave={onSaveDescription} labelText={"Descripción capítulo"} data={chapter.descripcion} multiline/>
       {
-        admin?
+        user?
         <>
           <KeyWords onChange={onEditKeyWords} data={chapter.keywords}/>
           <Button color="primary" onClick={onNewArticle}>Agregar artículo</Button>

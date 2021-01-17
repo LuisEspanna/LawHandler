@@ -13,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3),
     minWidth: 200,
     paddingTop:'30px',
-    width:'100%',
   }
 }));
 
@@ -21,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SectionTitle({title,showChildren}) {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const  {admin}  = useSelector( state => state.users );
+  const  {user}  = useSelector( state => state.users );
 
   const onDeleteTitle = (id) =>{
     dispatch(removeTitle(id));
@@ -50,7 +49,7 @@ export default function SectionTitle({title,showChildren}) {
       <MarkdownInput onSave={onSaveTitle} labelText={"Título"} data={title.titulo} onDelete={() => onDeleteTitle(title.id)}/>
       <MarkdownInput onSave={onSaveDescription} labelText={"Descripción Título"} data={title.descripcion} multiline/>
       {
-        admin?
+        user?
         <>
           <Button color="primary" onClick={onNewChapter}>Agregar capítulo</Button>
         </>:

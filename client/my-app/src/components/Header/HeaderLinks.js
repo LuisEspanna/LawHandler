@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from "react";
+import React, {useState, useEffect} from "react";
 // react components for routing our app without refresh
 import { Link } from "react-router-dom";
 
@@ -20,8 +20,23 @@ import styles from "../../assets/jss/material-kit-react/components/headerLinksSt
 
 const useStyles = makeStyles(styles);
 
-export default function HeaderLinks(props) {
+export default function HeaderLinks({user}) {
   const classes = useStyles();
+  const [links, setLinks] = useState([
+    <Link to={"/login"} className={classes.dropdownLink}>              
+      Singin              
+    </Link> ,
+    <Link to={"/login"} className={classes.dropdownLink}>              
+      Login              
+    </Link> , 
+  ]);
+
+  useEffect(() => {
+    if(user)
+    setLinks([...links, <Link to={"/Admin"} className={classes.dropdownLink}>              
+    View Admin Page</Link> ]);
+  },[user]);
+
   return (
     <List className={classes.list}>      
       <ListItem className={classes.listItem}>
@@ -90,17 +105,7 @@ export default function HeaderLinks(props) {
             color: "transparent"
           }}
           buttonIcon={Apps}
-          dropdownList={[
-            <Link to={"/login"} className={classes.dropdownLink}>              
-              Singin              
-            </Link> ,
-            <Link to={"/login"} className={classes.dropdownLink}>              
-              Login              
-            </Link>  ,
-            <Link to={"/Admin"} className={classes.dropdownLink}>              
-                View Admin Page              
-            </Link>  
-          ]}
+          dropdownList={links}
         />
       </ListItem>
     </List>
