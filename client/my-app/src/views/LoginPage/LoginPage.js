@@ -5,7 +5,6 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
 import Email from "@material-ui/icons/Email";
-import People from "@material-ui/icons/People";
 // core components
 import GridContainer from "../../components/Grid/GridContainer.js";
 import GridItem from "../../components/Grid/GridItem.js";
@@ -28,7 +27,6 @@ const useStyles = makeStyles(styles);
 
 export default function LoginPage(props) {
   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
-  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -40,18 +38,13 @@ export default function LoginPage(props) {
 
   const onGetStarted = () =>{
 
-    if(username.length>0 && email.length > 0 && password.length >0){
-      dispatch(startLogin({username, email}));
-      console.log({username, email});
+    if( email.length > 0 && password.length >0){
+      dispatch(startLogin({email, password}));
     }else{
       
       alert("Todos los campos son obligatorios");
     }
   }
-
-  const handleChangeUsername = (event) => {
-    setUsername(event.target.value);
-  };
 
   const handleChangePassword = (event) => {
     setPassword(event.target.value);
@@ -112,23 +105,6 @@ export default function LoginPage(props) {
                   </CardHeader>
                  
                   <CardBody>
-                    <CustomInput
-                      labelText="First Name..."
-                      id="first"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        type: "text",
-                        value: username,
-                        onChange:handleChangeUsername,
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <People className={classes.inputIconsColor} />
-                          </InputAdornment>
-                        )
-                      }}
-                    />
                     <CustomInput
                       labelText="Email..."
                       id="email"

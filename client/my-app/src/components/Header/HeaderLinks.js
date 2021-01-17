@@ -24,16 +24,13 @@ export default function HeaderLinks({user}) {
   const classes = useStyles();
   const [links, setLinks] = useState([
     <Link to={"/login"} className={classes.dropdownLink}>              
-      Singin              
-    </Link> ,
-    <Link to={"/login"} className={classes.dropdownLink}>              
-      Login              
+      Iniciar sesión              
     </Link> , 
   ]);
 
   useEffect(() => {
     if(user)
-    setLinks([...links, <Link to={"/Admin"} className={classes.dropdownLink}>              
+    setLinks([<Link to={"/Admin"} className={classes.dropdownLink}>              
     View Admin Page</Link> ]);
   },[user]);
 

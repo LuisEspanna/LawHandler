@@ -14,22 +14,44 @@ admin.initializeApp({
 var db = admin.database();
 
 router.get('/api/', (req, res)=>{
-
-  /*
-    db.ref('Users').child("info").push('Ecample');
-
-    console.log('Index Works');
-    res.render('index', {user:"Luis"});*/
     getUsers(req, res, admin);
 });
 
-router.post('/api/users', (req, res)=>{
-  /*
-    db.ref('Users').child("info").push('Ecample');
+router.post('/api/users/singin', (req, res)=>{
+    db.ref('Users').once('value', (snapshot)=>{
+        var users = snapshot.val();   
+        console.log(users);
+        db.ref('Users').push(req.body);        
+        res.status(200).json({status:'ok'});
+    });
+    
+});
 
-    console.log('Index Works');
-    res.render('index', {user:"Luis"});*/
-    res.json(req.body);
+router.post('/api/login', (req, res) => {
+
+  if(req.body.email && req.body.password){
+   
+    db.ref('Users').once('value', (snapshot) => {
+      var users = snapshot.val();
+      var found = false;
+      var data = {};
+  
+      for (const key in users) {
+        if (Object.hasOwnProperty.call(users, key)) {
+          const user = users[key];
+  
+          if (user.email === req.body.email && user.password === req.body.password) {
+            found = true;
+            data={...user}
+          }
+        }
+      }
+      
+      if(found)res.status(200).json({ status: 'ok', data });
+      else res.status(200).json({ status: 'Error al iniciar sesión, email o contraseña incorrectos' });
+    });
+  }
+  
 });
 
 router.get('/api/titles', (req, res)=>{

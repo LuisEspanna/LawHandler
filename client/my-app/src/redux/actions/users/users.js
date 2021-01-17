@@ -4,10 +4,14 @@ import {postData} from '../../../utils';
 
 export const startLogin = (user) => {
     return async ( dispatch ) => {
-        postData('/api/users', user)
+        postData('/api/login', user)
             .then(data => {
-            console.log(data); // JSON data parsed by `data.json()` call
-            dispatch(setUser(user));
+            console.log(data);
+            if(data.status === 'ok'){
+                dispatch(setUser(data.data));
+            }else{
+                alert(data.status);
+            }           
         });
     }
 }
