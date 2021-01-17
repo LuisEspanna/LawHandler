@@ -28,6 +28,7 @@ import {templateTitle} from '../../utils';
 //actions
 import {addTitle} from '../../redux/actions/titles/titles';
 import {setChanges} from '../../redux/actions/ui/ui';
+import {setUser} from '../../redux/actions/users/users';
 
 const useStyles1 = makeStyles(styles);
 
@@ -83,6 +84,10 @@ export default function ClippedDrawer() {
     dispatch(setChanges(!changes));
   };
 
+  const onLogout=()=>{
+    dispatch(setUser(undefined));
+  };
+
   return (
         <div className={classes.root}>
             <CssBaseline />
@@ -96,6 +101,7 @@ export default function ClippedDrawer() {
                               <Button                                  
                                   className={classes1.navLink}
                                   color="transparent"
+                                  onClick={onLogout}
                               >
                                   Cerrar sesión
                               </Button>
