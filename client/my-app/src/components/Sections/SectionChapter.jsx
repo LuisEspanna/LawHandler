@@ -84,7 +84,7 @@ export default function SectionChapter({chapter, parent, showChildren}) {
       <MarkdownInput onSave={onSaveTitle} labelText={"Título capítulo"} data={chapter.titulo} onDelete={() => onDeleteChapter(chapter.id)}/>
       <MarkdownInput onSave={onSaveDescription} labelText={"Descripción capítulo"} data={chapter.descripcion} multiline/>
       {
-        user?
+        user && !showChildren?
         <>
           <KeyWords onChange={onEditKeyWords} data={chapter.keywords}/>
           <Button color="primary" onClick={onNewArticle}>Agregar artículo</Button>
@@ -96,7 +96,7 @@ export default function SectionChapter({chapter, parent, showChildren}) {
           chapter && showChildren &&
           chapter.articulos.map((articulo,i) => {
               return (
-                <SectionArticle article={articulo} chapterId={chapter.id} title={parent} key={i}/>
+                <SectionArticle article={articulo} chapterId={chapter.id} title={parent} key={i} showChildren={showChildren}/>
               )
           })
       }

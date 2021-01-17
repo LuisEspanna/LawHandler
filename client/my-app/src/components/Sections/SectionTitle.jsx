@@ -49,7 +49,7 @@ export default function SectionTitle({title,showChildren}) {
       <MarkdownInput onSave={onSaveTitle} labelText={"Título"} data={title.titulo} onDelete={() => onDeleteTitle(title.id)}/>
       <MarkdownInput onSave={onSaveDescription} labelText={"Descripción Título"} data={title.descripcion} multiline/>
       {
-        user?
+        user && !showChildren?
         <>
           <Button color="primary" onClick={onNewChapter}>Agregar capítulo</Button>
         </>:
