@@ -1,3 +1,4 @@
+import {types} from '../actions/index';
 
 const initState = {
     users:[],
@@ -11,6 +12,11 @@ function reducer( state = initState, action ) {
             return {
                 ...state,
                 users: action.payload
+            }
+        case types.SET_USER:
+            return {
+                ...state,
+                user: action.payload
             }
         default:
             return state;

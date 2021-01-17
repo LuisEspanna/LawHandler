@@ -1,9 +1,9 @@
 import LoginPage from './views/LoginPage/LoginPage';
 import AdminPage from './views/AdminPage/AdminPage.jsx';
 import HomePage from './views/HomePage/HomePage.jsx';
+import { Redirect } from "react-router-dom";
+import {useSelector } from 'react-redux';
 
-import { Provider } from 'react-redux';
-import store from './redux/store';
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,23 +12,23 @@ import {
 
 
 function App() { 
+
+  const  {user}  = useSelector( state => state.users );
+
   return (
     <Router>
       <div className="App">
-        <Provider store={store}>
           <Switch>
             <Route path="/login">
-              <LoginPage/>
+              {user ? <Redirect to="/" /> : <LoginPage/>}
             </Route>
             <Route path="/admin">
-              <AdminPage/>
+              {!user ? <Redirect to="/" /> : <AdminPage/>}
             </Route>
             <Route path="/">
               <HomePage/>
             </Route>
           </Switch>
-          
-        </Provider>
       </div>
     </Router>
     

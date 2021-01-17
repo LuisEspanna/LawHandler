@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -15,21 +15,54 @@ import CardBody from "../../components/Card/CardBody.js";
 import CardHeader from "../../components/Card/CardHeader.js";
 import CardFooter from "../../components/Card/CardFooter.js";
 import CustomInput from "../../components/CustomInput/CustomInput.js";
+import { useDispatch} from 'react-redux';
 
 import styles from '../../assets/jss/material-kit-react/views/loginPage.js';
 
 import image from "../../assets/img/bg7.jpg";
 
+//actions
+import {startLogin} from '../../redux/actions/users/users';
+
 const useStyles = makeStyles(styles);
 
 export default function LoginPage(props) {
   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+
   setTimeout(function() {
     setCardAnimation("");
   }, 700);
   const classes = useStyles();
+
+  const onGetStarted = () =>{
+
+    if(username.length>0 && email.length > 0 && password.length >0){
+      dispatch(startLogin({username, email}));
+      console.log({username, email});
+    }else{
+      
+      alert("Todos los campos son obligatorios");
+    }
+  }
+
+  const handleChangeUsername = (event) => {
+    setUsername(event.target.value);
+  };
+
+  const handleChangePassword = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const handleChangeEmail = (event) => {
+    setEmail(event.target.value);
+  };
   
   return (
+    
     <div>
       
       <div
@@ -87,6 +120,8 @@ export default function LoginPage(props) {
                       }}
                       inputProps={{
                         type: "text",
+                        value: username,
+                        onChange:handleChangeUsername,
                         endAdornment: (
                           <InputAdornment position="end">
                             <People className={classes.inputIconsColor} />
@@ -102,6 +137,8 @@ export default function LoginPage(props) {
                       }}
                       inputProps={{
                         type: "email",
+                        value: email,
+                        onChange:handleChangeEmail,
                         endAdornment: (
                           <InputAdornment position="end">
                             <Email className={classes.inputIconsColor} />
@@ -117,6 +154,8 @@ export default function LoginPage(props) {
                       }}
                       inputProps={{
                         type: "password",
+                        value: password,
+                        onChange:handleChangePassword,
                         endAdornment: (
                           <InputAdornment position="end">
                             <Icon className={classes.inputIconsColor}>
@@ -129,9 +168,11 @@ export default function LoginPage(props) {
                     />
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
-                    <Button simple color="primary">
-                      Get started
-                    </Button>
+                    
+                      <Button simple color="primary" onClick={onGetStarted}>
+                        Get started
+                      </Button>
+                                   
                   </CardFooter>
                 </form>
               </Card>

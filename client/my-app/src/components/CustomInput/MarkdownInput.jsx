@@ -67,11 +67,13 @@ export default function MarkdownInput({multiline, labelText, data, onDelete, max
                         id="float"
                         inputProps={{
                             value: value,
-                            onChange:handleChange
+                            onChange:handleChange,
+                            autoComplete: "off"
                         }}
                         formControlProps={{
                             fullWidth: true
-                        }}                        
+                        }}    
+                                            
                     />
                 </GridItem>:
                 <GridItem xs={width}>

@@ -23,6 +23,16 @@ router.get('/api/', (req, res)=>{
     getUsers(req, res, admin);
 });
 
+router.post('/api/users', (req, res)=>{
+
+  /*
+    db.ref('Users').child("info").push('Ecample');
+
+    console.log('Index Works');
+    res.render('index', {user:"Luis"});*/
+    res.json(req.body);
+});
+
 router.get('/api/titles', (req, res)=>{
     let titles = [
       {
