@@ -1,3 +1,26 @@
+export const templateTitle = () => (
+    {
+        "id": new Date().getTime(),
+        "tipo":"Titulo",
+        "titulo": "## TÍTULO",
+        "descripcion": "### Descripción",
+        "capitulos" : [],
+        "multimedia" : []
+      }
+);
+
+export const templateChapter = () => (
+    {
+        "id": new Date().getTime(),
+        "tipo":"Capitulo",
+        "titulo":"### CAPÍTULO XX",
+        "descripcion": "### DESCRIPCIÓN CAPÍTULO XX.",
+        "articulos" : [],
+        "multimedia" : [],    
+        "keywords":[]
+    }
+);
+
 export const templateArticle = () => (
     {
         "id": new Date().getTime()+"",

@@ -80,7 +80,7 @@ export default function Components(props) {
           titulos && 
           titulos.map((titulo, i) => {
             return (
-              <SectionTitle title={titulo} key={i}/>
+              <SectionTitle title={titulo} key={i} showChildren={true}/>
             )
           })
         }

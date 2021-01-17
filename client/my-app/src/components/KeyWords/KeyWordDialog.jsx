@@ -8,6 +8,8 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import AddIcon from '@material-ui/icons/AddCircleOutline';
 import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
+
 
 export default function FormDialog({onSave}) {
   const [open, setOpen] = React.useState(false);
@@ -32,9 +34,11 @@ export default function FormDialog({onSave}) {
 
   return (
     <div>
-      <IconButton onClick={handleClickOpen}>
-        <AddIcon />
-      </IconButton>
+      <Tooltip title="Add keyword">
+        <IconButton onClick={handleClickOpen}>
+          <AddIcon />
+        </IconButton>
+      </Tooltip>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Nueva palabra clave</DialogTitle>
         <DialogContent>

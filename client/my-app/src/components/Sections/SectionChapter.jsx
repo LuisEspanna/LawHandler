@@ -12,13 +12,14 @@ import {updateTitle} from '../../redux/actions/titles/titles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minWidth: 120,
+    minWidth: 200,
     paddingTop:'30px',
+    width:'100%',
   }
 }));
 
 
-export default function SectionChapter({chapter, parent}) {
+export default function SectionChapter({chapter, parent, showChildren}) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const  {admin}  = useSelector( state => state.users );
@@ -31,7 +32,6 @@ export default function SectionChapter({chapter, parent}) {
 
   const onSaveTitle = (value) =>{
     var title = {...parent};
-
     title.capitulos.map(capitulo => {
       if(capitulo.id === chapter.id){
         capitulo.titulo = value;
@@ -44,7 +44,6 @@ export default function SectionChapter({chapter, parent}) {
 
   const onSaveDescription = (value) =>{
     var title = {...parent};
-
     title.capitulos.map(capitulo => {
       if(capitulo.id === chapter.id){
         capitulo.descripcion = value;
@@ -57,7 +56,6 @@ export default function SectionChapter({chapter, parent}) {
 
   const onEditKeyWords = (keywords) =>{
     var title = {...parent};
-    console.log(keywords)
     title.capitulos.map(capitulo => {
       if(capitulo.id === chapter.id){
         capitulo.keywords = keywords;
@@ -95,7 +93,7 @@ export default function SectionChapter({chapter, parent}) {
       }
       
       {       
-          chapter &&
+          chapter && showChildren &&
           chapter.articulos.map((articulo,i) => {
               return (
                 <SectionArticle article={articulo} chapterId={chapter.id} title={parent} key={i}/>

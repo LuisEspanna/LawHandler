@@ -10,7 +10,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Header from '../../components/Header/Header';
 import Button from '../../components/CustomButtons/Button';
-import Typography from '@material-ui/core/Typography';
+
 
 //icons
 
@@ -23,6 +23,13 @@ import ChartIcon from '@material-ui/icons/InsertChart';
 import ListSubheader from '@material-ui/core/ListSubheader';
 
 import styles from "../../assets/jss/material-kit-react/views/componentsSections/navbarsStyle.js";
+import {useSelector, useDispatch } from 'react-redux';
+
+import AccordionTitle from '../../components/Accordion/AccordionTitle.jsx';
+import {templateTitle} from '../../utils';
+
+//actions
+import {addTitle} from '../../redux/actions/titles/titles';
 
 const useStyles1 = makeStyles(styles);
 
@@ -59,6 +66,13 @@ const useStyles = makeStyles((theme) => ({
 export default function ClippedDrawer() {
   const classes = useStyles();
   const classes1 = useStyles1();
+  const  titulos  = useSelector( state => state.titulos );
+  const dispatch = useDispatch();
+
+  const onNewTitle=()=>{
+    console.log("New title");
+    dispatch(addTitle(templateTitle()));
+  };
 
   return (
         <div className={classes.root}>
@@ -78,20 +92,16 @@ export default function ClippedDrawer() {
                             </Button>
                           </ListItem>
                           <ListItem className={classes1.listItem}>
-                              <Button
-                                  
+                              <Button                                  
                                   className={classes1.navLink}
-
                                   color="transparent"
                               >
                                   Profile
                               </Button>
                           </ListItem>
                           <ListItem className={classes1.listItem}>
-                              <Button
-                                  
+                              <Button                                  
                                   className={classes1.navLink}
-
                                   color="transparent"
                               >
                                   Settings
@@ -120,7 +130,7 @@ export default function ClippedDrawer() {
                     </ListSubheader>
                     }
                 >
-                    <ListItem button>
+                    <ListItem button onClick={onNewTitle}>
                         <ListItemIcon><TitleIcon /></ListItemIcon>
                         <ListItemText primary={"Agregar título"} />
                     </ListItem>
@@ -162,24 +172,16 @@ export default function ClippedDrawer() {
                 </div>
             </Drawer>
 
-            <main className={classes.content}>
-                
-                <Typography paragraph>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                    ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-                    facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
-                    gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
-                    donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-                    adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
-                    Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
-                    imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-                    arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-                    donec massa sapien faucibus et molestie ac.
-                </Typography>
+            <main className={classes.content}>                
+            {
+                titulos && 
+                titulos.map((titulo, i) => {
+                    return (
+                        <AccordionTitle title={titulo} key={i}/>
+                    )
+                })
+            }                
             </main>
-
-
-
         </div>
   );
 }

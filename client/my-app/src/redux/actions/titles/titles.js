@@ -31,6 +31,13 @@ export const updateTitle = (title) => ({
     }
 })
 
+export const addTitle = (title) => ({
+    type: types.ADD_TITLE,
+    payload: {
+        ...title
+    }
+})
+
 export const removeChapter = (id, titleId) => ({
     type: types.REMOVE_CHAPTER,
     payload: {

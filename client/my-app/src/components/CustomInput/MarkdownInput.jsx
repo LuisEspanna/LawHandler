@@ -11,6 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import SaveIcon from '@material-ui/icons/Save';
 import DialogDelete from './DialogDeleteMarkdown.jsx';
 import { useSelector} from 'react-redux';
+import Tooltip from '@material-ui/core/Tooltip';
 
 const useStyles = makeStyles((theme) => ({
     textArea: {
@@ -91,9 +92,11 @@ export default function MarkdownInput({multiline, labelText, data, onDelete, max
             {
                 edit?
                 <GridItem xs={1}>
-                    <IconButton onClick={handleSave} className={classes.button}>
-                        <SaveIcon />
-                    </IconButton>
+                    <Tooltip title="Save">
+                        <IconButton onClick={handleSave} className={classes.button}>
+                            <SaveIcon />
+                        </IconButton>
+                    </Tooltip>
                 </GridItem>:
                 <GridItem xs={onDelete?2:1}>
                     {
@@ -104,9 +107,11 @@ export default function MarkdownInput({multiline, labelText, data, onDelete, max
                                 <DialogDelete className={classes.button} onDelete={onDelete}/>:
                                 null
                             }
-                            <IconButton onClick={handleEdit} className={classes.button}>
-                                <EditIcon />
-                            </IconButton>
+                            <Tooltip title="Edit">
+                                <IconButton onClick={handleEdit} className={classes.button}>
+                                    <EditIcon />
+                                </IconButton>
+                            </Tooltip>
                         </>:
                         null
                     }

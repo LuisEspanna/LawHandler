@@ -16,7 +16,9 @@ function reducer( state = initState, action ) {
 
             return [...state.slice(0, index), Object.assign({},state[index],action.payload), ...state.slice(index+1)];
             
-            
+        case types.ADD_TITLE:
+            return [...state, action.payload];
+
         default:
             return state;
     }

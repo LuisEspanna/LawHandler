@@ -14,8 +14,9 @@ import {updateTitle} from '../../redux/actions/titles/titles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minWidth: 120,
+    minWidth: 200,
     paddingTop:'30px',
+    width:'100%'
   }
 }));
 
@@ -28,12 +29,14 @@ export default function SectionArticle({article, chapterId, title}) {
   const onDeleteArticle = (id) =>{
     var newTitle = {...title};
 
-    title.capitulos.map(capitulo => {
-      if(capitulo.id === chapterId){
-        capitulo.articulos = capitulo.articulos.filter(articulo => articulo.id !== id);
-      }
-      return capitulo;
-    });
+    if(title){
+      title.capitulos.map(capitulo => {
+        if(capitulo.id === chapterId){
+          capitulo.articulos = capitulo.articulos.filter(articulo => articulo.id !== id);
+        }
+        return capitulo;
+      });
+    }
 
     dispatch(updateTitle(newTitle));
   }

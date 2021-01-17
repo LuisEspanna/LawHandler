@@ -7,5 +7,6 @@ export const types = {
     LOAD_TITLES : "LOAD_TITLES",
     REMOVE_TITLE : "REMOVE_TITLE",
     UPDATE_TITLE : "UPDATE_TITLE",
+    ADD_TITLE : "ADD_TITLE",
     
 }
