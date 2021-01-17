@@ -1,9 +1,11 @@
 import { makeStyles } from '@material-ui/core/styles';
 import MarkdownInput from '../CustomInput/MarkdownInput.jsx';
+import MultimediaInput from '../Multimedia/MultimediaInput.jsx';
 import SectionChapter from './SectionChapter.jsx';
 import {useDispatch, useSelector} from 'react-redux';
 import Button from '../CustomButtons/Button';
-import {templateChapter} from '../../utils';
+import {templateChapter, templateMultimedia} from '../../utils';
+
 
 //actions
 import {removeTitle, updateTitle} from '../../redux/actions/titles/titles';
@@ -44,6 +46,13 @@ export default function SectionTitle({title,showChildren}) {
     dispatch(updateTitle(newTitle));
   }
 
+  const onNewMultimedia = () =>{
+    var newTitle = {...title};
+    if(!newTitle.multimedia)newTitle.multimedia = [];
+    newTitle.multimedia = [...newTitle.multimedia, templateMultimedia()];
+    dispatch(updateTitle(newTitle));
+  }
+
   return (
     <div className={classes.root}>
       <MarkdownInput onSave={onSaveTitle} labelText={"Título"} data={title.titulo} onDelete={() => onDeleteTitle(title.id)}/>
@@ -52,6 +61,7 @@ export default function SectionTitle({title,showChildren}) {
         user && !showChildren?
         <>
           <Button color="primary" onClick={onNewChapter}>Agregar capítulo</Button>
+          <Button color="primary" onClick={onNewMultimedia}>Agregar Multimedia</Button>
         </>:
         null
       }
@@ -64,6 +74,17 @@ export default function SectionTitle({title,showChildren}) {
               )
           })
       }
+
+      {          
+        title && !showChildren && title.multimedia &&
+        title.multimedia.map((data,i) => {
+              return (
+                <MultimediaInput labelText={'Multimedia'} key={i} index={i} data={data} onDelete={()=>{console.log("delete")}}/>
+              )
+          })
+      }
+
+
     </div>
   );
 }

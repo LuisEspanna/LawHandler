@@ -55,11 +55,11 @@ router.post('/api/login', (req, res) => {
 });
 
 router.get('/api/titles', (req, res)=>{
-    db.ref('titles').once('value', (snapshot)=>{
+   /* db.ref('titles').once('value', (snapshot)=>{
       var titles = snapshot.val();           
       res.status(200).json(titles);
-    });
-    /*
+    });*/
+    
     let titles = [
       {
         "tipo":"Titulo",
@@ -149,7 +149,7 @@ router.get('/api/titles', (req, res)=>{
       }
     ]
 
-    res.json(titles);*/
+    res.json(titles);
 });
 
 router.post('/api/titles', (req, res)=>{

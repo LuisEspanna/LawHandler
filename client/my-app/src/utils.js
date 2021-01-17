@@ -44,6 +44,13 @@ export const templateItem = (value) => (
     }
 );
 
+export const templateMultimedia = () => (
+    {
+        "tipo": "imagen",
+        "url" : "https://wallpapercave.com/wp/wp6476165.jpg"
+    }
+);
+
 export async function postData(url = '', data = {}) {
     // Opciones por defecto estan marcadas con un *
     const response = await fetch(url, {
