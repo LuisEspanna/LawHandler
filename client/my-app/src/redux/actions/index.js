@@ -1,6 +1,7 @@
 export const types = {
     // UI
     SET_MAIN_LOADING : "[ui] main loading",
+    SET_CHANGES : "[ui] changes",
 
     //Titles
     START_LOADING_TITLES : "START_LOADING_TITLES",

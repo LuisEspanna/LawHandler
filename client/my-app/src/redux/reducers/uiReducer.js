@@ -2,6 +2,7 @@ import {types} from '../actions/';
 
 const initState = {
     main_loading: false,
+    changes : false
 }
 
 function reducer( state = initState, action ) {
@@ -11,6 +12,11 @@ function reducer( state = initState, action ) {
             return {
                 ...state,
                 main_loading: action.payload
+            }
+        case types.SET_CHANGES:
+            return {
+                ...state,
+                 changes: action.payload
             }
         default:
             return state;

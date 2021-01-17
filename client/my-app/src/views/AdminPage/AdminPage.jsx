@@ -10,6 +10,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Header from '../../components/Header/Header';
 import Button from '../../components/CustomButtons/Button';
+import Fab from '@material-ui/core/Fab';
+import SaveIcon from '@material-ui/icons/Save';
 
 
 //icons
@@ -30,6 +32,7 @@ import {templateTitle} from '../../utils';
 
 //actions
 import {addTitle} from '../../redux/actions/titles/titles';
+import {setChanges} from '../../redux/actions/ui/ui';
 
 const useStyles1 = makeStyles(styles);
 
@@ -61,17 +64,27 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
     flexGrow: 1,
   },
+  fab: {
+    position: 'fixed',
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
+  }
 }));
 
 export default function ClippedDrawer() {
   const classes = useStyles();
   const classes1 = useStyles1();
   const  titulos  = useSelector( state => state.titulos );
+  const  {changes}  = useSelector( state => state.ui );
   const dispatch = useDispatch();
 
+
   const onNewTitle=()=>{
-    console.log("New title");
     dispatch(addTitle(templateTitle()));
+  };
+
+  const onSaveChanges=()=>{
+    dispatch(setChanges(!changes));
   };
 
   return (
@@ -88,7 +101,7 @@ export default function ClippedDrawer() {
                                   className={classes1.navLink + " " + classes1.navLinkActive}
                                   color="transparent"
                               >
-                                  Discover
+                                  Admin
                             </Button>
                           </ListItem>
                           <ListItem className={classes1.listItem}>
@@ -96,15 +109,7 @@ export default function ClippedDrawer() {
                                   className={classes1.navLink}
                                   color="transparent"
                               >
-                                  Profile
-                              </Button>
-                          </ListItem>
-                          <ListItem className={classes1.listItem}>
-                              <Button                                  
-                                  className={classes1.navLink}
-                                  color="transparent"
-                              >
-                                  Settings
+                                  Cerrar sesión
                               </Button>
                           </ListItem>
                       </List>
@@ -180,7 +185,11 @@ export default function ClippedDrawer() {
                         <AccordionTitle title={titulo} key={i}/>
                     )
                 })
-            }                
+            }       
+
+            <Fab className={classes.fab} color={changes?'secondary':null} onClick={onSaveChanges}>
+                <SaveIcon/>
+            </Fab> 
             </main>
         </div>
   );
