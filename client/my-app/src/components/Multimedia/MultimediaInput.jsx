@@ -27,21 +27,27 @@ const useStyles = makeStyles((theme) => ({
 export default function MultimediaInput({labelText, data, onDelete, onSave, index}){
     const classes = useStyles();
     const [value, setValue] = useState(data.url);
+    const [type, setType] = useState(data.tipo);
     const  {user}  = useSelector( state => state.users );
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         setValue(data.url);
+        setType(data.tipo);
     },[data]);
 
     const handleChange = (event) => {
         setValue(event.target.value);
     };
 
+    const handleChangeType = (event) => {
+        setType(event.target.value);
+    };
+
     const handleSave = () => {
         dispatch(setChanges(true));
-        if(onSave)onSave(value, index);
+        if(onSave)onSave({tipo:type, url:value}, index);
     };
 
     
@@ -49,9 +55,9 @@ export default function MultimediaInput({labelText, data, onDelete, onSave, inde
         <GridContainer>
             <GridItem xs={2} >
                 <InputLabel id="label">Tipo</InputLabel>
-                <Select value="20">
-                    <MenuItem value="10">Imagen</MenuItem>
-                    <MenuItem value="20">Video</MenuItem>
+                <Select value={type} onChange={handleChangeType}>
+                    <MenuItem value="imagen">Imagen</MenuItem>
+                    <MenuItem value="video">Video</MenuItem>
                 </Select>
             </GridItem>
 

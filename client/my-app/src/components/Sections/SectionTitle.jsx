@@ -53,6 +53,21 @@ export default function SectionTitle({title,showChildren}) {
     dispatch(updateTitle(newTitle));
   }
 
+  const onSaveMultimedia = (value, index) =>{
+    var newTitle = {...title};
+    newTitle.multimedia = newTitle.multimedia.map((val, i)=>{
+      if(index === i)val=value;
+      return val;
+    });
+    dispatch(updateTitle(newTitle));
+  }
+
+  const onDeleteMultimedia = (index) =>{
+    var newTitle = {...title};
+    newTitle.multimedia = newTitle.multimedia.filter((val, i)=>i !== index);
+    dispatch(updateTitle(newTitle));
+  }
+
   return (
     <div className={classes.root}>
       <MarkdownInput onSave={onSaveTitle} labelText={"Título"} data={title.titulo} onDelete={() => onDeleteTitle(title.id)}/>
@@ -79,7 +94,7 @@ export default function SectionTitle({title,showChildren}) {
         title && !showChildren && title.multimedia &&
         title.multimedia.map((data,i) => {
               return (
-                <MultimediaInput labelText={'Multimedia'} key={i} index={i} data={data} onDelete={()=>{console.log("delete")}}/>
+                <MultimediaInput onSave={onSaveMultimedia} labelText={'Multimedia'} key={i} index={i} data={data} onDelete={()=>onDeleteMultimedia(i)}/>
               )
           })
       }

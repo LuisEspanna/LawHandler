@@ -6,7 +6,6 @@ export const startLogin = (user) => {
     return async ( dispatch ) => {
         postData('/api/login', user)
             .then(data => {
-            console.log(data);
             if(data.status === 'ok'){
                 dispatch(setUser(data.data));
             }else{
