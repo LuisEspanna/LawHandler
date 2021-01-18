@@ -1,11 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles';
 import MarkdownInput from '../CustomInput/MarkdownInput.jsx';
-import MultimediaInput from '../Multimedia/MultimediaInput.jsx';
 import SectionChapter from './SectionChapter.jsx';
 import {useDispatch, useSelector} from 'react-redux';
 import Button from '../CustomButtons/Button';
 import {templateChapter, templateMultimedia} from '../../utils';
 
+import MultimediaInput from '../Multimedia/MultimediaInput.jsx';
+import Multimedia from '../Multimedia/Multimedia.jsx';
 
 //actions
 import {removeTitle, updateTitle} from '../../redux/actions/titles/titles';
@@ -70,6 +71,10 @@ export default function SectionTitle({title,showChildren}) {
 
   return (
     <div className={classes.root}>
+      {
+        showChildren?<Multimedia data={title.multimedia}/>:null
+      }
+      
       <MarkdownInput onSave={onSaveTitle} labelText={"Título"} data={title.titulo} onDelete={() => onDeleteTitle(title.id)}/>
       <MarkdownInput onSave={onSaveDescription} labelText={"Descripción Título"} data={title.descripcion} multiline/>
       {
