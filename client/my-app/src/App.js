@@ -1,6 +1,7 @@
 import LoginPage from './views/LoginPage/LoginPage';
 import AdminPage from './views/AdminPage/AdminPage.jsx';
 import HomePage from './views/HomePage/HomePage.jsx';
+import SearchPage from './views/SearchPage/SearchPage.jsx';
 import { Redirect } from "react-router-dom";
 import {useSelector } from 'react-redux';
 
@@ -24,6 +25,9 @@ function App() {
             </Route>
             <Route path="/admin">
               {!user ? <Redirect to="/" /> : <AdminPage/>}
+            </Route>
+            <Route path="/search">
+              <SearchPage/>
             </Route>
             <Route path="/">
               <HomePage/>
