@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import CardTitle from '../CardResult/CardTitle.jsx';
 import CardChapter from '../CardResult/CardChapter.jsx';
+
+import { useSelector, useDispatch} from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,14 +16,29 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
-
   },
 }));
 
 export default function ResultsArea() {
   const classes = useStyles();
 
-  const results = ["Result1", "Result2", "Result3", "Result4","Result5", "Result6", "Result7", "Result8",];
+  const [titulos,   setTitulos] = useState([]);
+  const [capitulos, setCapitulos] = useState([]);
+  const [articulos, setArticulos] = useState([]);
+
+  const  {results}  = useSelector( state => state.results );
+
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    if(results){
+      setTitulos(results.filter(result => result.result.tipo === "Titulo"));
+      setCapitulos(results.filter(result => result.result.tipo === "Capitulo"));
+      setArticulos(results.filter(result => result.result.tipo === "Articulo"));
+    }
+    
+  },[results]);
+
   const example = {
     "tipo":"Titulo",
     "titulo": "Título I",
@@ -106,18 +123,32 @@ export default function ResultsArea() {
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
+        <p>Titulos</p>
         {
-            results.map((res, i)=>{
-                return(
-                    <Grid key ={i} item xs={12} sm={6} md={4}>
-                        <CardTitle serverData={example}/>
-                    </Grid>
-                )
-            })               
+          titulos &&
+          titulos.map((res, i)=>{
+              return(
+                  <Grid key ={i} item xs={12} sm={6} md={4}>
+                      <CardTitle serverData={example}/>
+                  </Grid>
+              )
+          })               
         } 
 
         {
-            results.map((res, i)=>{
+            capitulos &&
+            capitulos.map((res, i)=>{
+                return(
+                    <Grid key ={i} item xs={12} sm={6} md={4}>
+                        <CardChapter serverData={example.capitulos[0]} titleParent={example.titulo}/>
+                    </Grid>
+                )
+            })               
+        }
+
+        {
+            articulos &&
+            articulos.map((res, i)=>{
                 return(
                     <Grid key ={i} item xs={12} sm={6} md={4}>
                         <CardChapter serverData={example.capitulos[0]} titleParent={example.titulo}/>

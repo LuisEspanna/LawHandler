@@ -11,6 +11,7 @@ import thunk from "redux-thunk";
 import uiReducer from "./reducers/uiReducer";
 import titlesReducer from "./reducers/titleReducer";
 import usersReducer from "./reducers/usersReducer";
+import resultsReducer from "./reducers/resultsReducer";
 
 const composeEnhancers = (typeof window !== 'undefined' &&
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
@@ -18,7 +19,8 @@ const composeEnhancers = (typeof window !== 'undefined' &&
 const reducers = combineReducers({
     ui: uiReducer,
     titulos: titlesReducer,
-    users: usersReducer
+    users: usersReducer,
+    results:resultsReducer
 })
 
 export default createStore(

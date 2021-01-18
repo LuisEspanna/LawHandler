@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 
 // nodejs library that concatenates classes
 import classNames from "classnames";
-// react components for routing our app without refresh
-import { Link } from "react-router-dom";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
@@ -13,13 +11,11 @@ import HeaderLinks from "../../components/Header/HeaderLinks.js";
 import Footer from "../../components/Footer/Footer.js";
 import GridContainer from "../../components/Grid/GridContainer.js";
 import GridItem from "../../components/Grid/GridItem.js";
-import Button from "../../components/CustomButtons/Button.js";
 import Parallax from "../../components/Parallax/Parallax.js";
 
 import styles from "../../assets/jss/material-kit-react/views/components.js";
 
 import imageBackground from "../../assets/img/bg4.jpg";
-import SearchArea from "../../components/SearchArea/SearchArea.jsx";
 
 import {useDispatch, useSelector } from 'react-redux';
 
@@ -85,30 +81,7 @@ export default function Components(props) {
             )
           })
         }
-        
 
-        <SearchArea/>
-
-        <GridItem md={12} className={classes.textCenter}>
-          <Link to={"/login"} className={classes.link}>
-            <Button color="primary" size="lg" simple>
-              View Login Page
-            </Button>
-          </Link>
-        </GridItem>
-
-        {
-          user?
-          <GridItem md={12} className={classes.textCenter}>
-            <Link to={"/Admin"} className={classes.link}>
-              <Button color="primary" size="lg" simple>
-                View Admin Page
-              </Button>
-            </Link>
-          </GridItem>:null
-        }
-        
-        
       </div>
       <Footer />
     </div>

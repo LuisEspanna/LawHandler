@@ -1,11 +1,5 @@
-import React from "react";
-
-// @material-ui/core components
 import { makeStyles } from '@material-ui/core/styles';
-
 import SearchField from './SearchField.jsx';
-import Typography from '@material-ui/core/Typography'; 
-
 import ResultsArea from './ResultsArea.jsx';
 
 
@@ -18,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SearchArea() {
-const classes = useStyles();
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>

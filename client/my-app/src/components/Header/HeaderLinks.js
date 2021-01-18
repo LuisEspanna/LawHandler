@@ -26,6 +26,9 @@ export default function HeaderLinks({user}) {
     <Link to={"/login"} className={classes.dropdownLink}>              
       Iniciar sesión              
     </Link> , 
+    <Link to={"/search"} className={classes.dropdownLink}>              
+      Buscador             
+    </Link>
   ]);
 
   useEffect(() => {
