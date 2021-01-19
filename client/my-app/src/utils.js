@@ -68,3 +68,26 @@ export async function postData(url = '', data = {}) {
     });
     return response.json(); // parses JSON response into native JavaScript objects
   }
+
+  export const searchByKeyword = (titles, search) => {
+    var results = [];
+
+    titles.map(title => {
+        var foundTitle = false;
+
+        if(title.keywords)
+        title.keywords.map(keyword => {            
+            if(keyword.toLowerCase() === search.toLowerCase()){
+                foundTitle = true;
+            }
+            return keyword;
+        });
+
+        if(foundTitle)results.push({title, data: title});
+
+        return title;
+    });
+
+    console.log(results);
+    return results;
+  }

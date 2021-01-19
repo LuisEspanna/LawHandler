@@ -7,11 +7,12 @@ const initState = {
 
 function reducer( state = initState, action ) {
     
+    
     switch ( action.type ) {
         case types.LOAD_RESULTS:
             return {
                 ...state,
-                results: [...action.payload.results]
+                results: (action.payload)?[...action.payload]:[]
             };
             
         case types.ADD_RESULT:

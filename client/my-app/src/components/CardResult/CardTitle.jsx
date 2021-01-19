@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '../CustomButtons/Button';
 import Typography from '@material-ui/core/Typography';
+import MarkdownInput from '../CustomInput/MarkdownInput.jsx';
 
 
 const useStyles = makeStyles({
@@ -58,12 +59,8 @@ export default function CardTitle({serverData}) {
             />:<div></div>
         }
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {data.titulo}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {data.descripcion}
-          </Typography>
+          <MarkdownInput data={data.titulo}/>
+          <MarkdownInput data={data.descripcion}/>
           <Typography variant="body2" color="textSecondary" component="p">
             {data.capitulos}
           </Typography>

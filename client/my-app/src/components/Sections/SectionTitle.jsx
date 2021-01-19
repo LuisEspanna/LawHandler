@@ -8,6 +8,8 @@ import {templateChapter, templateMultimedia} from '../../utils';
 import MultimediaInput from '../Multimedia/MultimediaInput.jsx';
 import Multimedia from '../Multimedia/Multimedia.jsx';
 
+import KeyWords from '../KeyWords/KeyWords';
+
 //actions
 import {removeTitle, updateTitle} from '../../redux/actions/titles/titles';
 
@@ -69,6 +71,12 @@ export default function SectionTitle({title,showChildren}) {
     dispatch(updateTitle(newTitle));
   }
 
+  const onEditKeyWords = (keywords) =>{
+    var newTitle = {...title};
+    newTitle.keywords = keywords;
+    dispatch(updateTitle(newTitle));
+  }
+
   return (
     <div className={classes.root}>
       {
@@ -80,6 +88,7 @@ export default function SectionTitle({title,showChildren}) {
       {
         user && !showChildren?
         <>
+          <KeyWords onChange={onEditKeyWords} data={title.keywords}/>
           <Button color="primary" onClick={onNewChapter}>Agregar capítulo</Button>
           <Button color="primary" onClick={onNewMultimedia}>Agregar Multimedia</Button>
         </>:

@@ -22,22 +22,40 @@ const useStyles = makeStyles((theme) => ({
 export default function ResultsArea() {
   const classes = useStyles();
 
-  const [titulos,   setTitulos] = useState([]);
-  const [capitulos, setCapitulos] = useState([]);
-  const [articulos, setArticulos] = useState([]);
+  const  results  = useSelector( state => state.results.results );
 
-  const  {results}  = useSelector( state => state.results );
+  const getTitles = () => {
+    return results.filter(res => res.data.tipo === 'Titulo');
+  }
 
   const dispatch = useDispatch();
   
+  /*
   useEffect(() => {
-    if(results){
-      setTitulos(results.filter(result => result.result.tipo === "Titulo"));
-      setCapitulos(results.filter(result => result.result.tipo === "Capitulo"));
-      setArticulos(results.filter(result => result.result.tipo === "Articulo"));
+    if(results){      
+        var localTitles = [];
+        var localChapters = [];
+        var localArticles = [];
+        
+        results.map(res => {
+          console.log(res)
+          if(res.data)
+            if(res.data.tipo === 'Titulo')
+              localTitles.push(res);
+          return res;
+        });
+
+        //console.log(localTitles)
+        setTitulos(localTitles);
+      
+      
+      setCapitulos(results.filter(result => result.data.tipo === "Capitulo"));
+      setArticulos(results.filter(result => result.data.tipo === "Articulo"));
     }
-    
-  },[results]);
+
+    console.log(results);
+    console.log(titulos);
+  }, [results, titulos]);*/
 
   const example = {
     "tipo":"Titulo",
@@ -123,19 +141,20 @@ export default function ResultsArea() {
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
-        <p>Titulos</p>
+        
         {
-          titulos &&
-          titulos.map((res, i)=>{
+          getTitles() &&
+          getTitles().map((res, i)=>{
               return(
                   <Grid key ={i} item xs={12} sm={6} md={4}>
-                      <CardTitle serverData={example}/>
+                      {console.log(res)}
+                      <CardTitle serverData={res.data}/>
                   </Grid>
               )
           })               
         } 
 
-        {
+        {/*
             capitulos &&
             capitulos.map((res, i)=>{
                 return(
@@ -143,10 +162,10 @@ export default function ResultsArea() {
                         <CardChapter serverData={example.capitulos[0]} titleParent={example.titulo}/>
                     </Grid>
                 )
-            })               
+            })       */        
         }
 
-        {
+        {/*
             articulos &&
             articulos.map((res, i)=>{
                 return(
@@ -154,7 +173,7 @@ export default function ResultsArea() {
                         <CardChapter serverData={example.capitulos[0]} titleParent={example.titulo}/>
                     </Grid>
                 )
-            })               
+            }) */              
         }  
       </Grid>
     </div>

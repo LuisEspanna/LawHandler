@@ -145,6 +145,10 @@ router.get('/api/titles', (req, res)=>{
             "tipo": "imagen",
             "url" : "https://wallpapercave.com/wp/wp6476165.jpg"
           }
+        ],
+        "keywords":[
+            "Keyword1",
+            "Keyword2"
         ]
       }
     ]

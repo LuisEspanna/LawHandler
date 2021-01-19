@@ -1,4 +1,5 @@
 import {types} from '../index';
+import {searchByKeyword} from '../../../utils';
 
 export const setResults = ( results ) => ({
     type: types.LOAD_RESULTS,
@@ -21,3 +22,9 @@ export const setCurrentResult = ( title, result) => ({
     }
 })
  
+
+export const search = (titles, word) => {
+    return async ( dispatch ) => {
+        dispatch(setResults(searchByKeyword(titles, word)));
+    }
+}

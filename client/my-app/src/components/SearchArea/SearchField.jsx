@@ -13,6 +13,8 @@ import ArticleIcon from '@material-ui/icons/FontDownload';
 
 import SearchMenu from './SearchMenu.jsx';
 
+import {search} from '../../redux/actions/results/results';
+import { useSelector, useDispatch} from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,13 +39,21 @@ const useStyles = makeStyles((theme) => ({
 export default function CustomizedInputBase() {
   const classes = useStyles();
   const [type, setType] = useState("Chapter");
+  const [value, setValue] = useState("dsd");
+  const dispatch = useDispatch();
+
+  const  titulos  = useSelector( state => state.titulos );
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
 
   const onMenuItemSelect = (itemSelected) => {
     setType(itemSelected);
   }
 
   const onSearch = () =>{
-      console.log("Search");
+      dispatch(search(titulos, value));
   }
 
   return (
@@ -52,6 +62,7 @@ export default function CustomizedInputBase() {
       <SearchMenu onSelect={onMenuItemSelect} />
 
       <InputBase
+        onChange={handleChange}
         className={classes.input}
         placeholder="Búsqueda"        
       />
