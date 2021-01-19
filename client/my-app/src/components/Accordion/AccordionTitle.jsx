@@ -47,7 +47,7 @@ export default function ControlledAccordions({title}) {
           id="panel1bh-header"
         >
           <Typography className={classes.heading}>{title.titulo}</Typography>
-          <Typography className={classes.secondaryHeading}>Capitulos: {title.capitulos.length}</Typography>
+          <Typography className={classes.secondaryHeading}>Capitulos: {title.capitulos?title.capitulos.length:0}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           
@@ -57,7 +57,7 @@ export default function ControlledAccordions({title}) {
             </GridItem>
 
             <GridItem xs={12}>
-              {
+              { title.capitulos &&
                 title.capitulos.map((chapter, i) => {
                   return( <AccordionChapter chapter={chapter} parent={title} key={i}/> )
                 })

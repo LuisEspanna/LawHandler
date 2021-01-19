@@ -57,14 +57,17 @@ export default function CustomizedInputBase() {
   }
 
   return (
-    <Paper component="form" className={classes.root}>
+    <Paper className={classes.root}>
       
       <SearchMenu onSelect={onMenuItemSelect} />
 
       <InputBase
         onChange={handleChange}
         className={classes.input}
-        placeholder="Búsqueda"        
+        placeholder="Búsqueda"
+        onKeyDown={(e) => {
+          if(e.key === "Enter")onSearch()
+        }}
       />
       <IconButton className={classes.iconButton} onClick={onSearch}>
         <SearchIcon />

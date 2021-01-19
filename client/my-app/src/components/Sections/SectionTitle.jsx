@@ -85,6 +85,7 @@ export default function SectionTitle({title,showChildren}) {
       
       <MarkdownInput onSave={onSaveTitle} labelText={"Título"} data={title.titulo} onDelete={() => onDeleteTitle(title.id)}/>
       <MarkdownInput onSave={onSaveDescription} labelText={"Descripción Título"} data={title.descripcion} multiline/>
+      
       {
         user && !showChildren?
         <>
@@ -96,7 +97,7 @@ export default function SectionTitle({title,showChildren}) {
       }
 
       {          
-        title && showChildren &&
+        title && showChildren && title.capitulos &&
         title.capitulos.map((chapter,i) => {
               return (
                 <SectionChapter chapter={chapter} parent={title} key={i} showChildren={showChildren}/>

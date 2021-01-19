@@ -50,7 +50,8 @@ export default function KeyWords({data, onChange}) {
   return (
       <GridContainer className={classes.root}>
         <GridItem xs={11}>
-            {chipData.map((data, i) => {
+            {chipData &&
+            chipData.map((data, i) => {
                 return (
                 <div key={i} className={classes.box}>
                     <Chip

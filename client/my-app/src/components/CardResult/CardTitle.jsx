@@ -34,7 +34,7 @@ export default function CardTitle({serverData, onShowResult}) {
       
       var titulo = serverData.titulo;
       var descripcion = serverData.descripcion;
-      var capitulos = ("Capitulos: " + serverData.capitulos.length);
+      var capitulos = ("Capitulos: " + (serverData.capitulos?serverData.capitulos.length:0));
       var imagen = undefined;
 
       if(serverData.multimedia){
@@ -54,7 +54,7 @@ export default function CardTitle({serverData, onShowResult}) {
           capitulos,
           imagen
       });
-    }, [serverData.titulo, serverData.descripcion, serverData.capitulos.length, serverData.multimedia, data.multimedia]);
+    }, [serverData.titulo, serverData.descripcion, serverData.capitulos, serverData.multimedia, data.multimedia]);
 
 
   return (
