@@ -22,6 +22,7 @@ const useStyles = makeStyles(styles);
 
 export default function HeaderLinks({user}) {
   const classes = useStyles();
+  
   const [links, setLinks] = useState([
     <Link to={"/login"} className={classes.dropdownLink}>Iniciar sesión</Link> , 
     <Link to={"/search"} className={classes.dropdownLink}>Buscador</Link>,
@@ -34,9 +35,14 @@ export default function HeaderLinks({user}) {
       <Link to={"/"} className={classes.dropdownLink}>Inicio</Link> ,
       <Link to={"/search"} className={classes.dropdownLink}>Buscador</Link>,
       <Link to={"/Admin"} className={classes.dropdownLink}>View Admin Page</Link> ,
-      <Link className={classes.dropdownLink}>Cerrar sesión</Link>
     ]);
   },[user]);
+
+  /*
+  const onLogout=()=>{
+    console.log("Cerrar sesion");
+    //dispatch(setUser(undefined));
+  };*/
 
   return (
     <List className={classes.list}>      

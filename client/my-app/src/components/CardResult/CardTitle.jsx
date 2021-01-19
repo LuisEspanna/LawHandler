@@ -8,7 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '../CustomButtons/Button';
 import Typography from '@material-ui/core/Typography';
 import MarkdownInput from '../CustomInput/MarkdownInput.jsx';
-import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 
 const useStyles = makeStyles({
@@ -23,6 +23,12 @@ const useStyles = makeStyles({
 export default function CardTitle({serverData, onShowResult}) {
   const classes = useStyles();
   const [data, setData] = useState(0);
+  const [onRedirect, setRedirect] = useState(false);
+
+  const handleShowResult = () => {
+    onShowResult();
+    setRedirect(true);
+  }
 
   useEffect(() => {
       
@@ -40,6 +46,8 @@ export default function CardTitle({serverData, onShowResult}) {
           }
       }
 
+      setRedirect(false);
+
       setData({
           titulo,
           descripcion,
@@ -51,7 +59,7 @@ export default function CardTitle({serverData, onShowResult}) {
 
   return (
     <Card className={classes.root}>
-      <CardActionArea onClick={onShowResult}>
+      <CardActionArea onClick={handleShowResult}>
         {
           data.imagen ? 
             <CardMedia
@@ -68,9 +76,12 @@ export default function CardTitle({serverData, onShowResult}) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Link to={"/details"} className={classes.dropdownLink}>
-          <Button color="primary" simple onClick={onShowResult}>Leer más</Button>
-        </Link>
+        <Button color="primary" simple onClick={handleShowResult}>
+          Leer más
+          {
+            onRedirect?<Redirect to="/details" />:null
+          }
+        </Button>
       </CardActions>
     </Card>
   );
