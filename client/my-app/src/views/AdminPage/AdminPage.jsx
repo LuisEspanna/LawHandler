@@ -25,6 +25,8 @@ import {useSelector, useDispatch } from 'react-redux';
 import AccordionTitle from '../../components/Accordion/AccordionTitle.jsx';
 import {templateTitle} from '../../utils';
 
+import { Link } from "react-router-dom";
+
 //actions
 import {addTitle, startUpload} from '../../redux/actions/titles/titles';
 import {setChanges} from '../../redux/actions/ui/ui';
@@ -147,10 +149,13 @@ export default function ClippedDrawer() {
                         <ListItemText primary={"Listar títulos"} />
                     </ListItem>
 
-                    <ListItem button>
+                    <Link to={"/"}>
+                        <ListItem button>
                         <ListItemIcon><LawIcon /></ListItemIcon>
                         <ListItemText primary={"Ver ley completa"} />
-                    </ListItem>
+                        </ListItem>
+                    </Link>
+                    
                 </List>
                 <Divider />
                 <List 

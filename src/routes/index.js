@@ -12,6 +12,7 @@ admin.initializeApp({
 });
 
 var db = admin.database();
+var cachedTitles = undefined;
 
 router.get('/api/', (req, res)=>{
     getUsers(req, res, admin);
@@ -54,11 +55,19 @@ router.post('/api/login', (req, res) => {
   
 });
 
-router.get('/api/titles', (req, res)=>{
+router.get('/api/titles', (req, res)=>{  
+  if(cachedTitles === undefined){
     db.ref('titles').once('value', (snapshot)=>{
-      var titles = snapshot.val();           
+      var titles = snapshot.val();    
+      cachedTitles = titles;    
+      console.log("Data from firebase");   
       res.status(200).json(titles);
     });
+  }else{
+    console.log("Data cached");  
+    res.status(200).json(cachedTitles);
+  }
+    
     /*
     let titles = [
       {
@@ -157,6 +166,7 @@ router.get('/api/titles', (req, res)=>{
 });
 
 router.post('/api/titles', (req, res)=>{
+    cachedTitles = undefined;
     db.ref('titles').set(req.body);
     res.json({server:"ok"});
 });

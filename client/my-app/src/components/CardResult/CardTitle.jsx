@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CardTitle({serverData}) {
+export default function CardTitle({serverData, onShowResult}) {
   const classes = useStyles();
   const [data, setData] = useState(0);
 
@@ -50,7 +50,7 @@ export default function CardTitle({serverData}) {
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
+      <CardActionArea onClick={onShowResult}>
         {
           data.imagen ? 
             <CardMedia
@@ -67,7 +67,7 @@ export default function CardTitle({serverData}) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button color="primary" simple>Leer más</Button>
+        <Button color="primary" simple onClick={onShowResult}>Leer más</Button>
       </CardActions>
     </Card>
   );

@@ -14,11 +14,10 @@ export const addResult = ( title, result) => ({
     }
 })
 
-export const setCurrentResult = ( title, result) => ({
-    type: types.ADD_RESULT,
+export const setCurrentResult = ( result) => ({
+    type: types.SET_CURRENT_RESULT,
     payload: {
-        title,
-        result
+        ...result
     }
 })
  

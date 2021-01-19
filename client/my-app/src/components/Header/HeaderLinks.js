@@ -23,18 +23,17 @@ const useStyles = makeStyles(styles);
 export default function HeaderLinks({user}) {
   const classes = useStyles();
   const [links, setLinks] = useState([
-    <Link to={"/login"} className={classes.dropdownLink}>              
-      Iniciar sesión              
-    </Link> , 
-    <Link to={"/search"} className={classes.dropdownLink}>              
-      Buscador             
-    </Link>
+    <Link to={"/login"} className={classes.dropdownLink}>Iniciar sesión</Link> , 
+    <Link to={"/search"} className={classes.dropdownLink}>Buscador</Link>,
+    <Link to={"/"} className={classes.dropdownLink}>Inicio</Link> 
   ]);
 
   useEffect(() => {
     if(user)
-    setLinks([<Link to={"/Admin"} className={classes.dropdownLink}>              
-    View Admin Page</Link> ]);
+    setLinks([
+      <Link to={"/Admin"} className={classes.dropdownLink}>View Admin Page</Link> ,
+      <Link to={"/"} className={classes.dropdownLink}>Inicio</Link> 
+    ]);
   },[user]);
 
   return (

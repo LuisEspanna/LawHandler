@@ -14,8 +14,9 @@ import CardBody from "../../components/Card/CardBody.js";
 import CardHeader from "../../components/Card/CardHeader.js";
 import CardFooter from "../../components/Card/CardFooter.js";
 import CustomInput from "../../components/CustomInput/CustomInput.js";
-import { useDispatch} from 'react-redux';
-
+import { useDispatch, useSelector} from 'react-redux';
+import Header from "../../components/Header/Header.js";
+import HeaderLinks from "../../components/Header/HeaderLinks.js";
 import styles from '../../assets/jss/material-kit-react/views/loginPage.js';
 
 import image from "../../assets/img/bg7.jpg";
@@ -25,11 +26,16 @@ import {startLogin} from '../../redux/actions/users/users';
 
 const useStyles = makeStyles(styles);
 
+
 export default function LoginPage(props) {
   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+
+  const  {user}  = useSelector( state => state.users );
+
+  const { ...rest } = props;
 
   setTimeout(function() {
     setCardAnimation("");
@@ -58,6 +64,18 @@ export default function LoginPage(props) {
     
     <div>
       
+      <Header
+        brand="Law Handler"
+        rightLinks={<HeaderLinks user={user}/>}
+        fixed
+        color="transparent"
+        changeColorOnScroll={{
+          height: 400,
+          color: "white"
+        }}
+        {...rest}
+      />
+
       <div
         className={classes.pageHeader}
         style={{

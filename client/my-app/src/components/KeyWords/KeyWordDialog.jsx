@@ -9,11 +9,13 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import AddIcon from '@material-ui/icons/AddCircleOutline';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
-
+import {useDispatch} from 'react-redux';
+import {setChanges} from '../../redux/actions/ui/ui';
 
 export default function FormDialog({onSave}) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = useState("");
+  const dispatch = useDispatch();
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -28,7 +30,8 @@ export default function FormDialog({onSave}) {
   };
 
   const handleSave = () => {
-    onSave(value)
+    onSave(value);
+    dispatch(setChanges(true));
     setOpen(false);
   };  
 
