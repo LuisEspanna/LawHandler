@@ -16,6 +16,8 @@ import {
 function App() { 
 
   const  {user}  = useSelector( state => state.users );
+  const  titles  = useSelector( state => state.titulos );
+  const  {current_result}  = useSelector( state => state.results );
 
   return (
     <Router>
@@ -28,10 +30,10 @@ function App() {
               {!user ? <Redirect to="/" /> : <AdminPage/>}
             </Route>
             <Route path="/search">
-              <SearchPage/>
+              {titles.length === 0 ? <Redirect to="/" /> : <SearchPage/>}
             </Route>
             <Route path="/details">
-              <DetailPage/>
+              {!current_result ? <Redirect to="/" /> : <DetailPage/>}
             </Route>
             <Route path="/">
               <HomePage/>

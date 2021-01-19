@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 // nodejs library that concatenates classes
 import classNames from "classnames";
@@ -18,10 +18,7 @@ import styles from "../../assets/jss/material-kit-react/views/components.js";
 import imageBackground from "../../assets/img/bg3.jpg";
 import SearchArea from "../../components/SearchArea/SearchArea.jsx";
 
-import {useDispatch, useSelector } from 'react-redux';
-
-//actions
-import {startLoadingTitles, loadTitles} from '../../redux/actions/titles/titles.js';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles(styles);
 
@@ -38,13 +35,8 @@ export default function Components(props) {
   const classes = useStyles();
   const customClasses = newStyles();
   const { ...rest } = props;
-  const dispatch = useDispatch();
-  const  {user}  = useSelector( state => state.users );
 
-  useEffect(() => {
-    dispatch(loadTitles([]));
-    dispatch(startLoadingTitles());
-  },[dispatch]);
+  const  {user}  = useSelector( state => state.users );
 
   return (
     <div>

@@ -36,8 +36,15 @@ export default function Components(props) {
   const  {user}  = useSelector( state => state.users );
 
   useEffect(() => {
+    const ac = new AbortController();
     dispatch(loadTitles([]));
-    dispatch(startLoadingTitles());
+
+    Promise.all([dispatch(startLoadingTitles())])
+    .then(() => console.log("OK"))
+    .catch(ex => console.error(ex));
+  
+    return () => ac.abort();
+    
   },[dispatch]);
 
   return (

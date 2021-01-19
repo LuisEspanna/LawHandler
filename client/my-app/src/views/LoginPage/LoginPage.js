@@ -150,6 +150,9 @@ export default function LoginPage(props) {
                         type: "password",
                         value: password,
                         onChange:handleChangePassword,
+                        onKeyDown:(e) => {
+                          if(e.key === "Enter")onGetStarted();
+                        },
                         endAdornment: (
                           <InputAdornment position="end">
                             <Icon className={classes.inputIconsColor}>

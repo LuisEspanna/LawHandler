@@ -51,9 +51,10 @@ export const templateMultimedia = () => (
     }
 );
 
-export async function postData(url = '', data = {}) {
+export async function postData(url = '', data = {}, ac) {
     // Opciones por defecto estan marcadas con un *
     const response = await fetch(url, {
+      signal:ac?ac.signal:null,  
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
       mode: 'cors', // no-cors, *cors, same-origin
       cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
