@@ -4,6 +4,7 @@ import HomePage from './views/HomePage/HomePage.jsx';
 import SearchPage from './views/SearchPage/SearchPage.jsx';
 import { Redirect } from "react-router-dom";
 import {useSelector } from 'react-redux';
+import DetailPage from './views/DetailPage/DetailPage.jsx';
 
 import {
   BrowserRouter as Router,
@@ -28,6 +29,9 @@ function App() {
             </Route>
             <Route path="/search">
               <SearchPage/>
+            </Route>
+            <Route path="/details">
+              <DetailPage/>
             </Route>
             <Route path="/">
               <HomePage/>

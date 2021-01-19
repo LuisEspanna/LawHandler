@@ -8,6 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '../CustomButtons/Button';
 import Typography from '@material-ui/core/Typography';
 import MarkdownInput from '../CustomInput/MarkdownInput.jsx';
+import { Link } from "react-router-dom";
 
 
 const useStyles = makeStyles({
@@ -67,7 +68,9 @@ export default function CardTitle({serverData, onShowResult}) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button color="primary" simple onClick={onShowResult}>Leer más</Button>
+        <Link to={"/details"} className={classes.dropdownLink}>
+          <Button color="primary" simple onClick={onShowResult}>Leer más</Button>
+        </Link>
       </CardActions>
     </Card>
   );

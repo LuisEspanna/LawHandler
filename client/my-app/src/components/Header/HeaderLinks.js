@@ -31,19 +31,16 @@ export default function HeaderLinks({user}) {
   useEffect(() => {
     if(user)
     setLinks([
+      <Link to={"/"} className={classes.dropdownLink}>Inicio</Link> ,
+      <Link to={"/search"} className={classes.dropdownLink}>Buscador</Link>,
       <Link to={"/Admin"} className={classes.dropdownLink}>View Admin Page</Link> ,
-      <Link to={"/"} className={classes.dropdownLink}>Inicio</Link> 
+      <Link className={classes.dropdownLink}>Cerrar sesión</Link>
     ]);
   },[user]);
 
   return (
     <List className={classes.list}>      
       <ListItem className={classes.listItem}>
-        {/*<Tooltip title="Delete">
-          <IconButton aria-label="Delete">
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>*/}
         <Tooltip
           id="instagram-twitter"
           title="Follow us on twitter"
