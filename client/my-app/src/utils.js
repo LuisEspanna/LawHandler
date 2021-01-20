@@ -125,6 +125,6 @@ export async function postData(url = '', data = {}, ac) {
         return title;
     });
 
-    console.log(results);
+    //console.log(results);
     return results;
   }

@@ -9,7 +9,6 @@ import { useSelector, useDispatch} from 'react-redux';
 import {setAlert} from '../../redux/actions/ui/ui';
 
 export default function SimpleSnackbar() {
-  //const [open, setOpen] = React.useState(false);
   const  {show, message}  = useSelector( state => state.ui.alert );
 
   const dispatch = useDispatch();

@@ -85,7 +85,7 @@ export default function SimpleCard({serverData, onShowResult}) {
             }  
             <CardContent>
                 
-                <Typography variant="p" component="p" gutterBottom>
+                <Typography variant="subtitle1" component="p" gutterBottom>
                     {"Pertenece a: " + serverData.title.titulo.replace("## ", "")}
                 </Typography>
                 <Typography variant="h5" component="h2" gutterBottom>

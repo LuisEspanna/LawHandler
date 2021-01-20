@@ -55,7 +55,6 @@ export default function ResultsArea() {
           getTitles().map((res, i)=>{
               return(
                   <Grid key ={i} item xs={12} sm={6} md={4}>
-                      {console.log(res)}
                       <CardTitle serverData={res.data} onShowResult={()=>handleShowResult(res)} />
                   </Grid>
               )
@@ -67,7 +66,6 @@ export default function ResultsArea() {
           getChapters().map((res, i)=>{
               return(
                   <Grid key ={i} item xs={12} sm={6} md={4}>
-                      {console.log(res)}
                       <CardChapter serverData={res} onShowResult={()=>handleShowResult(res)} />
                   </Grid>
               )
@@ -79,7 +77,6 @@ export default function ResultsArea() {
           getArticles().map((res, i)=>{
               return(
                   <Grid key ={i} item xs={12} sm={6} md={4}>
-                      {console.log(res)}
                       <CardArticle serverData={res} onShowResult={()=>handleShowResult(res)} />
                   </Grid>
               )
