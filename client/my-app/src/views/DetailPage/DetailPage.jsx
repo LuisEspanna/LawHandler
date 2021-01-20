@@ -13,6 +13,7 @@ import SectionChapter from '../../components/Sections/SectionChapter.jsx';
 
 //actions
 import {startLoadingTitles, loadTitles} from '../../redux/actions/titles/titles.js';
+import SectionArticle from "../../components/Sections/SectionArticle.jsx";
 
 const useStyles = makeStyles(styles);
 
@@ -66,7 +67,7 @@ export default function Components(props) {
             
         <div className={customClasses.root}>
           {
-            //(result.data.tipo === "Articulo")?<SectionChapter chapter={result.data} parent={result.title} showChildren={true}/>:null 
+            (result.data.tipo === "Articulo")?<SectionArticle article={result.data} title={result.title} showChildren={true}/>:null 
           }
         </div>
 

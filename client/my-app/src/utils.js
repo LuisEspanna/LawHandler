@@ -102,13 +102,26 @@ export async function postData(url = '', data = {}, ac) {
             
             //Capitulos
             if(foundChapter)results.push({title, data: capitulo});
+
+            //Articulos
+            if(capitulo.articulos)
+            capitulo.articulos.map(articulo => { 
+                var foundArticle = false;
+                if(articulo.keywords)
+                articulo.keywords.map(keyword => {            
+                    if(keyword.toLowerCase() === search.toLowerCase()){
+                        foundArticle = true;
+                    }
+                    return keyword;
+                });
+                
+                //Articulos
+                if(foundArticle)results.push({title, data: articulo});
+                return articulo;
+            });
+
             return capitulo;
         });
-
-        
-
-
-
         return title;
     });
 

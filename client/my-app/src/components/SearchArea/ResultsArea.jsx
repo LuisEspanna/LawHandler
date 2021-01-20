@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import CardTitle from '../CardResult/CardTitle.jsx';
 import CardChapter from '../CardResult/CardChapter.jsx';
+import CardArticle from '../CardResult/CardArticle.jsx';
 
 import { useSelector, useDispatch} from 'react-redux';
 
@@ -33,6 +34,10 @@ export default function ResultsArea() {
 
   const getChapters = () => {
     return results.filter(res => res.data.tipo === 'Capitulo');
+  }
+
+  const getArticles = () => {
+    return results.filter(res => res.data.tipo === 'Articulo');
   }
 
   const dispatch = useDispatch();
@@ -69,27 +74,17 @@ export default function ResultsArea() {
           })               
         } 
 
-        {/*
-            capitulos &&
-            capitulos.map((res, i)=>{
-                return(
-                    <Grid key ={i} item xs={12} sm={6} md={4}>
-                        <CardChapter serverData={example.capitulos[0]} titleParent={example.titulo}/>
-                    </Grid>
-                )
-            })       */        
-        }
-
-        {/*
-            articulos &&
-            articulos.map((res, i)=>{
-                return(
-                    <Grid key ={i} item xs={12} sm={6} md={4}>
-                        <CardChapter serverData={example.capitulos[0]} titleParent={example.titulo}/>
-                    </Grid>
-                )
-            }) */              
-        }  
+{
+          getArticles() &&
+          getArticles().map((res, i)=>{
+              return(
+                  <Grid key ={i} item xs={12} sm={6} md={4}>
+                      {console.log(res)}
+                      <CardArticle serverData={res} onShowResult={()=>handleShowResult(res)} />
+                  </Grid>
+              )
+          })               
+        } 
       </Grid>
     </div>
   );
