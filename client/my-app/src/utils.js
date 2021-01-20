@@ -76,6 +76,7 @@ export async function postData(url = '', data = {}, ac) {
     titles.map(title => {
         var foundTitle = false;
 
+        //Titulos
         if(title.keywords)
         title.keywords.map(keyword => {            
             if(keyword.toLowerCase() === search.toLowerCase()){
@@ -84,7 +85,29 @@ export async function postData(url = '', data = {}, ac) {
             return keyword;
         });
 
+        //Titulos
         if(foundTitle)results.push({title, data: title});
+
+        //Capitulos
+        if(title.capitulos)
+        title.capitulos.map(capitulo => { 
+            var foundChapter = false;
+            if(capitulo.keywords)
+            capitulo.keywords.map(keyword => {            
+                if(keyword.toLowerCase() === search.toLowerCase()){
+                    foundChapter = true;
+                }
+                return keyword;
+            });
+            
+            //Capitulos
+            if(foundChapter)results.push({title, data: capitulo});
+            return capitulo;
+        });
+
+        
+
+
 
         return title;
     });

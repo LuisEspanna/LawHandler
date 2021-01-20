@@ -9,15 +9,25 @@ import Footer from "../../components/Footer/Footer.js";
 import styles from "../../assets/jss/material-kit-react/views/components.js";
 import {useDispatch, useSelector } from 'react-redux';
 import SectionTitle from '../../components/Sections/SectionTitle.jsx';
+import SectionChapter from '../../components/Sections/SectionChapter.jsx';
 
 //actions
 import {startLoadingTitles, loadTitles} from '../../redux/actions/titles/titles.js';
 
 const useStyles = makeStyles(styles);
 
+const useStyles1 = makeStyles((theme) => ({
+  root: {
+    margin: theme.spacing(3),
+    minWidth: 200,
+    paddingTop:'30px',
+  }
+}));
+
 
 export default function Components(props) {
   const classes = useStyles();
+  const customClasses = useStyles1();
   const { ...rest } = props;
   const dispatch = useDispatch();
   
@@ -47,6 +57,18 @@ export default function Components(props) {
         {
             (result.data.tipo === "Titulo")?<SectionTitle title={result.data} showChildren={true}/>:null 
         }
+        
+        <div className={customClasses.root}>
+          {
+            (result.data.tipo === "Capitulo")?<SectionChapter chapter={result.data} parent={result.title} showChildren={true}/>:null 
+          }
+        </div>
+            
+        <div className={customClasses.root}>
+          {
+            //(result.data.tipo === "Articulo")?<SectionChapter chapter={result.data} parent={result.title} showChildren={true}/>:null 
+          }
+        </div>
 
       </div>
       <Footer />

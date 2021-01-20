@@ -7,10 +7,10 @@ import Button from '../CustomButtons/Button';
 import Typography from '@material-ui/core/Typography';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
+import { Redirect } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 275,
   },
   bullet: {
     display: 'inline-block',
@@ -28,22 +28,29 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SimpleCard({serverData, titleParent}) {
+export default function SimpleCard({serverData, onShowResult}) {
     const classes = useStyles();
 
     const [data, setData] = useState(0);
+    const [onRedirect, setRedirect] = useState(false);
+
+    const handleShowResult = () => {
+        onShowResult();
+        setRedirect(true);
+      }
 
     useEffect(() => {
         
-        var titulo = serverData.titulo;
-        var descripcion = serverData.descripcion;
-        var articulos = ("Artículos: " + serverData.articulos.length);
+        var titulo = serverData.data.titulo.replace("### ", "");
+        var descripcion = serverData.data.descripcion.replace("### ","");
+        var articulos = ("Artículos: " + (serverData.data.articulos?serverData.data.articulos.length:0));
         var imagen = undefined;
         
 
-        if(serverData.multimedia){
-            for (let i = 0; i < serverData.multimedia.length; i++) {
-                if(serverData.multimedia[i].tipo === "imagen"){
+
+        if(serverData.data.multimedia){
+            for (let i = 0; i < serverData.data.multimedia.length; i++) {
+                if(serverData.data.multimedia[i].tipo === "imagen"){
                     imagen = serverData.multimedia[i].url;
                     break;
                 }            
@@ -56,7 +63,14 @@ export default function SimpleCard({serverData, titleParent}) {
             articulos,
             imagen,
         });
-    }, [serverData.titulo, serverData.descripcion, serverData.articulos.length, serverData.multimedia, data.multimedia]);
+    }, [serverData.data.titulo, 
+        serverData.data.descripcion, 
+        serverData.data.articulos.length, 
+        serverData.data.multimedia, 
+        data.multimedia,
+        serverData.data.articulos,
+        serverData.multimedia
+    ]);
 
     return (
         <Card className={classes.root}>
@@ -70,8 +84,9 @@ export default function SimpleCard({serverData, titleParent}) {
                 :<div></div>
             }  
             <CardContent>
-                <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    Pertenece a: {titleParent}
+                
+                <Typography variant="p" component="p" gutterBottom>
+                    {"Pertenece a: " + serverData.title.titulo.replace("## ", "")}
                 </Typography>
                 <Typography variant="h5" component="h2" gutterBottom>
                     {data.titulo}
@@ -85,7 +100,12 @@ export default function SimpleCard({serverData, titleParent}) {
             </CardContent>
         </CardActionArea>
         <CardActions>
-                <Button color="primary" simple>Leer más</Button>
+            <Button color="primary" simple onClick={handleShowResult} >
+                Leer más
+                {
+                    onRedirect?<Redirect to="/details" />:null
+                }
+            </Button>
         </CardActions>  
         </Card>
     );

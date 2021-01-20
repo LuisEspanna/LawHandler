@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import CardTitle from '../CardResult/CardTitle.jsx';
-//import CardChapter from '../CardResult/CardChapter.jsx';
+import CardChapter from '../CardResult/CardChapter.jsx';
 
 import { useSelector, useDispatch} from 'react-redux';
 
@@ -31,6 +31,10 @@ export default function ResultsArea() {
     return results.filter(res => res.data.tipo === 'Titulo');
   }
 
+  const getChapters = () => {
+    return results.filter(res => res.data.tipo === 'Capitulo');
+  }
+
   const dispatch = useDispatch();
 
   const handleShowResult = (res) => {
@@ -48,6 +52,18 @@ export default function ResultsArea() {
                   <Grid key ={i} item xs={12} sm={6} md={4}>
                       {console.log(res)}
                       <CardTitle serverData={res.data} onShowResult={()=>handleShowResult(res)} />
+                  </Grid>
+              )
+          })               
+        } 
+
+        {
+          getChapters() &&
+          getChapters().map((res, i)=>{
+              return(
+                  <Grid key ={i} item xs={12} sm={6} md={4}>
+                      {console.log(res)}
+                      <CardChapter serverData={res} onShowResult={()=>handleShowResult(res)} />
                   </Grid>
               )
           })               
