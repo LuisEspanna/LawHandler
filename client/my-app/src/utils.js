@@ -124,7 +124,23 @@ export async function postData(url = '', data = {}, ac) {
         });
         return title;
     });
-
-    //console.log(results);
     return results;
   }
+
+
+
+export const toChart = () => {
+
+    //visitors
+    const fb = {
+        "sdasdferfw22":{
+            tipo: "Ingeniero",
+            date: new Date().getTime()
+        }
+    }
+
+    return {
+        "tipo": "imagen",
+        "url" : "https://wallpapercave.com/wp/wp6476165.jpg"
+    }
+};

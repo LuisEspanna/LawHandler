@@ -13,6 +13,7 @@ export const types = {
 
     //Users
     SET_USER:"SET_USER",
+    SET_PROFESSION:"SET_PROFESSION",
 
     //Users
     LOAD_RESULTS:"LOAD_RESULTS",

@@ -21,6 +21,11 @@ export const setUser = (user) => ({
     payload: user
 })
 
+export const setProfession = (profession) => ({
+    type: types.SET_PROFESSION,
+    payload: profession
+})
+
 
 
  

@@ -2,7 +2,8 @@ import {types} from '../actions/index';
 
 const initState = {
     users:[],
-    user:undefined
+    user:undefined,
+    profession:undefined
 }
 
 function reducer( state = initState, action ) {
@@ -17,6 +18,11 @@ function reducer( state = initState, action ) {
             return {
                 ...state,
                 user: action.payload
+            }
+        case types.SET_PROFESSION:
+            return {
+                ...state,
+                profession: action.payload
             }
         default:
             return state;

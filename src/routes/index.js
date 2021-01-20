@@ -24,8 +24,7 @@ router.post('/api/users/singin', (req, res)=>{
         console.log(users);
         db.ref('Users').push(req.body);        
         res.status(200).json({status:'ok'});
-    });
-    
+    });    
 });
 
 router.post('/api/login', (req, res) => {
@@ -51,8 +50,7 @@ router.post('/api/login', (req, res) => {
       if(found)res.status(200).json({ status: 'ok', data });
       else res.status(200).json({ status: 'Error al iniciar sesión, email o contraseña incorrectos' });
     });
-  }
-  
+  }  
 });
 
 router.get('/api/titles', (req, res)=>{  
@@ -67,108 +65,28 @@ router.get('/api/titles', (req, res)=>{
     console.log("Data cached");  
     res.status(200).json(cachedTitles);
   }
-    
-    /*
-    let titles = [
-      {
-        "tipo":"Titulo",
-        "titulo": "## TÍTULO I",
-        "descripcion": "### GENERALIDADES",
-        "id": "123456",
-        "capitulos" : [
-          {
-            "id":"11222345",
-            "tipo":"Capitulo",
-            "titulo":"### CAPÍTULO I",
-            "descripcion": "### REQUISITOS PARA EJERCER LA INGENIERÍA, SUS PROFESIONES AFINES Y SUS PROFESIONES AUXILIARES.",
-            "articulos" : [
-              {
-                "id":"44564451",
-                "tipo":"Articulo",
-                "titulo": "### ARTÍCULO 1o.",
-                "descripcion": "### Descripcion articulo ejemplo \n Más descripción ~~texto tachado~~",
-                "literales" : [
-                  {
-                    "id":"7879445",
-                    "titulo" : "**a)**",
-                    "descripcion": "Descripcion literal a",
-                    "notas":[
-                      "**nota1 literal a**",
-                      "**nota2 literal a**"
-                    ],
-    
-                    "keywords":[]
-                  }
-                ],
-                "paragrafos" : [
-                  {
-                    "id":"74216458",
-                    "titulo" : "### Parágrafo 1",
-                    "descripcion": "Descripcion ejm",
-                    "notas":[
-                      "### ~~nota1 paragrafo~~",
-                      "### ~~nota2 paragrafo~~"
-                    ],
-                    "keywords":[
-                      "Keyword1",
-                      "Keyword2"
-                    ]
-                  }
-                ],
-                "multimedia" : [
-                  {
-                    "tipo": "video",
-                    "url" : "www.videejemplo.com"
-                  }
-                ]
-                ,
-                "keywords":[
-                  "Keyword1",
-                  "Keyword2"
-                ]
-              }
-            ],
-            "multimedia" : [
-              {
-                "tipo": "video",
-                "url" : "www.videejemplo.com"
-              },
-              {
-                "tipo": "imagen",
-                "url" : "https://wallpapercave.com/wp/wp6476165.jpg"
-              }
-            ],    
-            "keywords":[
-              "Keyword1",
-              "Keyword2"
-            ]
-          }
-        ]
-        ,
-        "multimedia" : [
-          {
-            "tipo": "video",
-            "url" : "www.videejemplo.com"
-          },
-          {
-            "tipo": "imagen",
-            "url" : "https://wallpapercave.com/wp/wp6476165.jpg"
-          }
-        ],
-        "keywords":[
-            "Keyword1",
-            "Keyword2"
-        ]
-      }
-    ]
-
-    res.json(titles);*/
 });
 
 router.post('/api/titles', (req, res)=>{
     cachedTitles = undefined;
     db.ref('titles').set(req.body);
     res.json({server:"ok"});
+});
+
+router.post('/api/visitors', (req, res)=>{
+
+  db.ref('Visitors').push(req.body);
+
+  console.log(req.body);
+
+  res.json({server:"ok"});
+});
+
+router.get('/api/visitors', (req, res)=>{
+  db.ref('Visitors').once('value', (snapshot)=>{
+    var visitors = snapshot.val();    
+    res.status(200).json(visitors);
+  });
 });
 
 router.get('/', (req, res)=>{
