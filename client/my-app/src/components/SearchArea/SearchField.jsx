@@ -38,18 +38,21 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CustomizedInputBase() {
   const classes = useStyles();
-  const [type, setType] = useState("Chapter");
-  const [value, setValue] = useState("dsd");
+  const [type, setType] = useState("");
+  const [value, setValue] = useState("");
   const dispatch = useDispatch();
 
   const  titulos  = useSelector( state => state.titulos );
 
   const handleChange = (event) => {
     setValue(event.target.value);
+    setType("");
   };
 
   const onMenuItemSelect = (itemSelected) => {
     setType(itemSelected);
+    setValue(itemSelected);
+    dispatch(search(titulos, itemSelected));
   }
 
   const onSearch = () =>{
@@ -62,6 +65,7 @@ export default function CustomizedInputBase() {
       <SearchMenu onSelect={onMenuItemSelect} />
 
       <InputBase
+        value={value}
         onChange={handleChange}
         className={classes.input}
         placeholder="Búsqueda"
@@ -78,11 +82,11 @@ export default function CustomizedInputBase() {
       <IconButton color="primary" className={classes.iconButton} aria-label="directions">
         
         {
-          (type === "Titles")?(
+          (type === "Titulo")?(
             <TitleIcon/>
-          ):(type === "Chapters")?(
+          ):(type === "Capitulo")?(
             <ChapterIcon/>
-          ):(type === "Articles")?(
+          ):(type === "Articulo")?(
             <ArticleIcon/>
           ):<div></div>
 

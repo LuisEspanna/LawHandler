@@ -74,7 +74,7 @@ export default function SimpleCard({serverData, onShowResult}) {
 
     return (
         <Card className={classes.root}>
-        <CardActionArea>
+        <CardActionArea onClick={handleShowResult}>
             {
                 data.imagen?
                 <CardMedia

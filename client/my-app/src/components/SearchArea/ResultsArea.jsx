@@ -74,7 +74,7 @@ export default function ResultsArea() {
           })               
         } 
 
-{
+        {
           getArticles() &&
           getArticles().map((res, i)=>{
               return(

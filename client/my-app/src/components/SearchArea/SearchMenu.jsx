@@ -69,21 +69,21 @@ export default function SearchMenu({onSelect}) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <StyledMenuItem onClick={()=>onSelect("Titles")}>
+        <StyledMenuItem onClick={()=>onSelect("Titulo")}>
           <ListItemIcon>
             <TitleIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="Títulos" />
         </StyledMenuItem>
 
-        <StyledMenuItem onClick={()=>onSelect("Chapters")}>
+        <StyledMenuItem onClick={()=>onSelect("Capitulo")}>
           <ListItemIcon>
             <ChapterIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="Capítulos" />
         </StyledMenuItem>
 
-        <StyledMenuItem onClick={()=>onSelect("Articles")}>
+        <StyledMenuItem onClick={()=>onSelect("Articulo")}>
           <ListItemIcon>
             <ArticleIcon fontSize="small" />
           </ListItemIcon>
