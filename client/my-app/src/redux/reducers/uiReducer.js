@@ -2,7 +2,11 @@ import {types} from '../actions/';
 
 const initState = {
     main_loading: false,
-    changes : false
+    changes : false,
+    alert:{
+        show:false,
+        message:"Alerta ejemplo"
+    }
 }
 
 function reducer( state = initState, action ) {
@@ -17,6 +21,11 @@ function reducer( state = initState, action ) {
             return {
                 ...state,
                  changes: action.payload
+            }
+        case types.SET_ALERT:
+            return {
+                ...state,
+                 alert: action.payload
             }
         default:
             return state;

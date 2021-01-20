@@ -27,6 +27,8 @@ import {templateTitle} from '../../utils';
 
 import { Link } from "react-router-dom";
 
+import Snackbar from "../../components/Snackbar/Snackbar.jsx";
+
 //actions
 import {addTitle, startUpload} from '../../redux/actions/titles/titles';
 import {setChanges} from '../../redux/actions/ui/ui';
@@ -184,7 +186,8 @@ export default function ClippedDrawer() {
                 </div>
             </Drawer>
 
-            <main className={classes.content}>                
+            <main className={classes.content}>  
+            <Snackbar/>              
             {
                 titulos && 
                 titulos.map((titulo, i) => {

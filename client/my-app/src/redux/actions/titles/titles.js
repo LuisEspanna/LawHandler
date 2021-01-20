@@ -1,12 +1,14 @@
 import {types} from '../index';
 import {postData} from '../../../utils';
+import {setAlert} from '../ui/ui';
 
 
 export const startUpload = (titles) => {
     return async ( dispatch ) => {
         postData('/api/titles', titles)
         .then(data => {
-            console.log(data);
+            //console.log(data);
+            dispatch(setAlert(true,"Cambios guardados con éxito"));
         });
     }
 }

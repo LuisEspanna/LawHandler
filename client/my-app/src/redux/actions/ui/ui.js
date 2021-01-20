@@ -9,4 +9,12 @@ export const setChanges = ( status ) => ({
     type: types.SET_CHANGES,
     payload: status
 })
+
+export const setAlert = ( show, message ) => ({
+    type: types.SET_ALERT,
+    payload: {
+        show, 
+        message
+    }
+})
  
