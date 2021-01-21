@@ -16,15 +16,18 @@ import Parallax from "../../components/Parallax/Parallax.js";
 import styles from "../../assets/jss/material-kit-react/views/components.js";
 
 import imageBackground from "../../assets/img/bg4.jpg";
-
 import {useDispatch, useSelector } from 'react-redux';
-
 import SectionTitle from '../../components/Sections/SectionTitle.jsx';
 import SurveyDialog from "../../components/Survey/SurveyDialog.jsx";
 import Snackbar from "../../components/Snackbar/Snackbar.jsx";
 
+import SearchIcon from '@material-ui/icons/Search';
+
+import FloatActionButton from "../../components/CustomButtons/FloatActionButton.jsx";
+
 //actions
 import {startLoadingTitles, loadTitles} from '../../redux/actions/titles/titles.js';
+
 
 const useStyles = makeStyles(styles);
 
@@ -92,6 +95,7 @@ export default function Components(props) {
         }
 
       </div>
+      <FloatActionButton icon={<SearchIcon/>} link={"/search"} />
       <Snackbar/> 
       <Footer />
     </div>

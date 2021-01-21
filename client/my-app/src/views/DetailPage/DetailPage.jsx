@@ -1,19 +1,23 @@
 import React, { useEffect } from "react";
+import {useDispatch, useSelector } from 'react-redux';
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-// @material-ui/icons
+
 // core components
 import Header from "../../components/Header/Header.js";
 import HeaderLinks from "../../components/Header/HeaderLinks.js";
 import Footer from "../../components/Footer/Footer.js";
 import styles from "../../assets/jss/material-kit-react/views/components.js";
-import {useDispatch, useSelector } from 'react-redux';
+
 import SectionTitle from '../../components/Sections/SectionTitle.jsx';
 import SectionChapter from '../../components/Sections/SectionChapter.jsx';
+import SectionArticle from "../../components/Sections/SectionArticle.jsx";
 
+import FloatActionButton from "../../components/CustomButtons/FloatActionButton.jsx";
+import SearchIcon from '@material-ui/icons/Search';
 //actions
 import {startLoadingTitles, loadTitles} from '../../redux/actions/titles/titles.js';
-import SectionArticle from "../../components/Sections/SectionArticle.jsx";
+
 
 const useStyles = makeStyles(styles);
 
@@ -73,6 +77,7 @@ export default function Components(props) {
 
       </div>
       <Footer />
+      <FloatActionButton icon={<SearchIcon/>} link={"/search"} />
     </div>
   );
 }
