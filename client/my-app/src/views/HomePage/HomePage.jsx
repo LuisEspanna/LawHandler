@@ -20,7 +20,6 @@ import imageBackground from "../../assets/img/bg4.jpg";
 import {useDispatch, useSelector } from 'react-redux';
 
 import SectionTitle from '../../components/Sections/SectionTitle.jsx';
-import LineChart from "../../components/Chart/LineChart.jsx";
 import SurveyDialog from "../../components/Survey/SurveyDialog.jsx";
 import Snackbar from "../../components/Snackbar/Snackbar.jsx";
 
@@ -82,12 +81,6 @@ export default function Components(props) {
       </Parallax>
 
       <div className={classNames(classes.main, classes.mainRaised)}>
-        <LineChart labels={["Jan", "Feb", "March"]} datasets={[
-                    {
-                        label: "Sales",
-                        data: [86, 67, 91],
-                    }
-                ]} />
         <SurveyDialog/>
         {
           titulos && 

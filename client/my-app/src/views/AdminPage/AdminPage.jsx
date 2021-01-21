@@ -28,6 +28,7 @@ import {templateTitle} from '../../utils';
 import { Link } from "react-router-dom";
 
 import Snackbar from "../../components/Snackbar/Snackbar.jsx";
+import SectionCharts from "../../components/Sections/SectionCharts.jsx";
 
 //actions
 import {addTitle, startUpload} from '../../redux/actions/titles/titles';
@@ -79,6 +80,8 @@ export default function ClippedDrawer() {
   const  {user}  = useSelector( state => state.users );
   const dispatch = useDispatch();
 
+  const [currentSection, setCurrentSection] = React.useState("");
+
 
   const onNewTitle=()=>{
     dispatch(addTitle(templateTitle()));
@@ -93,6 +96,10 @@ export default function ClippedDrawer() {
 
   const onLogout=()=>{
     dispatch(setUser(undefined));
+  };
+
+  const handleSection=(section)=>{
+    setCurrentSection(section);
   };
 
   return (
@@ -146,7 +153,7 @@ export default function ClippedDrawer() {
                         <ListItemText primary={"Agregar título"} />
                     </ListItem>
 
-                    <ListItem button>
+                    <ListItem button onClick={()=>handleSection("titulos")} >
                         <ListItemIcon><ListIcon /></ListItemIcon>
                         <ListItemText primary={"Listar títulos"} />
                     </ListItem>
@@ -177,7 +184,7 @@ export default function ClippedDrawer() {
 
                 <Divider />
                 <List>
-                    <ListItem button>
+                    <ListItem button onClick={()=>handleSection("graficas")} >
                         <ListItemIcon><ChartIcon /></ListItemIcon>
                         <ListItemText primary={"Estadísticas"} />
                     </ListItem>
@@ -187,15 +194,21 @@ export default function ClippedDrawer() {
             </Drawer>
 
             <main className={classes.content}>  
-            <Snackbar/>              
+            <Snackbar/>  
             {
-                titulos && 
-                titulos.map((titulo, i) => {
-                    return (
-                        <AccordionTitle title={titulo} key={i}/>
-                    )
-                })
-            }       
+                (currentSection === "titulos")?(
+                    titulos && 
+                    titulos.map((titulo, i) => {
+                        return (
+                            <AccordionTitle title={titulo} key={i}/>
+                        )
+                    })
+                ):(currentSection === "graficas")?(
+                    <SectionCharts/>
+                ):null
+            }   
+                     
+                   
 
             <Button size="lg" justIcon round color={changes?"primary":null} className={classes.fab} onClick={onSaveChanges}>
                 <SaveIcon/>
