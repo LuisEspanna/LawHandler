@@ -1,5 +1,6 @@
 import {types} from '../index';
 import {postData} from '../../../utils';
+import {setAlert} from '../ui/ui';
 
 
 export const startLogin = (user) => {
@@ -15,6 +16,15 @@ export const startLogin = (user) => {
     }
 }
  
+export const startUploadProfession = (profession) => {
+    return async ( dispatch ) => {
+        postData('/api/visitors', {profession, date:new Date().getTime()})
+        .then(data => {
+            //console.log(data);
+            dispatch(setAlert(true,"Guardado con éxito"));
+        });
+    }
+}
 
 export const setUser = (user) => ({
     type: types.SET_USER,

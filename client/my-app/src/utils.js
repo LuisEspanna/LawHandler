@@ -68,9 +68,9 @@ export async function postData(url = '', data = {}, ac) {
       body: JSON.stringify(data) // body data type must match "Content-Type" header
     });
     return response.json(); // parses JSON response into native JavaScript objects
-  }
+}
 
-  export const searchByKeyword = (titles, search) => {
+export const searchByKeyword = (titles, search) => {
     var results = [];
 
     titles.map(title => {
@@ -125,19 +125,19 @@ export async function postData(url = '', data = {}, ac) {
         return title;
     });
     return results;
-  }
+}
 
 
 
 export const toChart = () => {
-
+    /*
     //visitors
     const fb = {
         "sdasdferfw22":{
-            tipo: "Ingeniero",
+            profession: "Ingeniero",
             date: new Date().getTime()
         }
-    }
+    }*/
 
     return {
         "tipo": "imagen",

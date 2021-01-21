@@ -4,9 +4,6 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import AddIcon from '@material-ui/icons/AddCircleOutline';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
 import {useDispatch, useSelector} from 'react-redux';
 import Checkbox from "@material-ui/core/Checkbox";
 import Check from "@material-ui/icons/Check";
@@ -17,6 +14,8 @@ import Button from '../CustomButtons/Button';
 
 //Actions
 import {setProfession} from '../../redux/actions/users/users';
+import {startUploadProfession} from '../../redux/actions/users/users';
+
 
 import Autocomplete from "./Autocomplete.jsx";
 
@@ -40,35 +39,23 @@ export default function SurveyDialog({onSave}) {
 
   const handleChange = (event) => {
     if(professions.filter(p=> p === event.target.innerHTML).length === 1){
-      console.log(professions.filter(p=> p === event.target.innerHTML))
-      console.log(event.target.innerHTML);
       setValue(event.target.innerHTML);
     }else{
       setValue(undefined);
     }    
   };
 
-  const handleClickOpen = () => {
-    //setOpen(true);
-  };
-
-  const handleClose = () => {
-    //setOpen(false);
-  };
-
   const handleSend = () => {
     if(!value)alert("Debes seleccionar un área de profesión");
-    dispatch(setProfession(value));
+    else{
+      dispatch(setProfession(value));
+      dispatch(startUploadProfession(value));
+    }
   };  
 
   return (
     <div>
-      <Tooltip title="Add keyword">
-        <IconButton onClick={handleClickOpen}>
-          <AddIcon />
-        </IconButton>
-      </Tooltip>
-      <Dialog open={!open?true:false} onClose={handleClose} aria-labelledby="form-dialog-title">
+      <Dialog open={!open?true:false} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Encuesta obligatoria</DialogTitle>
         <DialogContent>
           <DialogContentText>

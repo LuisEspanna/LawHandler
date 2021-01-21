@@ -22,6 +22,7 @@ import {useDispatch, useSelector } from 'react-redux';
 import SectionTitle from '../../components/Sections/SectionTitle.jsx';
 import LineChart from "../../components/Chart/LineChart.jsx";
 import SurveyDialog from "../../components/Survey/SurveyDialog.jsx";
+import Snackbar from "../../components/Snackbar/Snackbar.jsx";
 
 //actions
 import {startLoadingTitles, loadTitles} from '../../redux/actions/titles/titles.js';
@@ -98,6 +99,7 @@ export default function Components(props) {
         }
 
       </div>
+      <Snackbar/> 
       <Footer />
     </div>
   );
