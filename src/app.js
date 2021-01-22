@@ -2,11 +2,12 @@ const express = require('express');
 const morgan = require('morgan');
 const exphbs = require('express-handlebars');
 const path = require('path');
-
+var cors = require('cors')
 const app = express();
 var body_parser = require('body-parser');
 
 //setting
+app.use(cors());
 app.set('port', process.env.PORT || 3001);
 app.set('views', path.join(__dirname, 'views'));
 app.engine('.hbs', exphbs({
