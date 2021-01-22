@@ -128,19 +128,3 @@ export const searchByKeyword = (titles, search) => {
 }
 
 
-
-export const toChart = () => {
-    /*
-    //visitors
-    const fb = {
-        "sdasdferfw22":{
-            profession: "Ingeniero",
-            date: new Date().getTime()
-        }
-    }*/
-
-    return {
-        "tipo": "imagen",
-        "url" : "https://wallpapercave.com/wp/wp6476165.jpg"
-    }
-};
