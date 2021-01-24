@@ -24,6 +24,7 @@ import Snackbar from "../../components/Snackbar/Snackbar.jsx";
 import SearchIcon from '@material-ui/icons/Search';
 
 import FloatActionButton from "../../components/CustomButtons/FloatActionButton.jsx";
+//import LinearIndeterminate from "../../components/Loading/LinearLoading.jsx";
 
 //actions
 import {startLoadingTitles, loadTitles} from '../../redux/actions/titles/titles.js';

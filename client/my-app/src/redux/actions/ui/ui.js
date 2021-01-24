@@ -1,8 +1,8 @@
 import {types} from '../index';
 
-export const setMainLoading = ( status ) => ({
+export const setMainLoading = ( show ) => ({
     type: types.SET_MAIN_LOADING,
-    payload: status
+    payload: show
 })
 
 export const setChanges = ( status ) => ({
